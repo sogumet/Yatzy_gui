@@ -14,10 +14,8 @@ from play import Play
 class MainWindow(QMainWindow):
     """"Main class"""
 
-
     dice_grafhics = ["dice_one60", "dice_two60","dice_three60",
             "dice_four60","dice_five60","dice_six60"]
-    faces = {"1": "window.dice1.setPixmap"}
     play = Play()
 
     def __init__(self, *args, **kwargs):
@@ -26,23 +24,18 @@ class MainWindow(QMainWindow):
         basedir = os.path.dirname(__file__)
         uic.loadUi(os.path.join(basedir, "dicetest.ui"), self)
         self.button1_is_checked = False
-        self.button1.setCheckable(True)
-        self.button1.clicked.connect(self.toggled1)
         self.button2_is_checked = False
-        self.button2.setCheckable(True)
-        self.button2.clicked.connect(self.toggled2)
         self.button3_is_checked = False
-        self.button3.setCheckable(True)
-        self.button3.clicked.connect(self.toggled3)
         self.button4_is_checked = False
-        self.button4.setCheckable(True)
-        self.button4.clicked.connect(self.toggled4)
         self.button5_is_checked = False
-        self.button5.setCheckable(True)
-        self.button5.clicked.connect(self.toggled5)
+        self.button1.clicked.connect( lambda checked: self.button_clicked(checked, "1"))
+        self.button2.clicked.connect( lambda checked: self.button_clicked(checked, "2"))
+        self.button3.clicked.connect( lambda checked: self.button_clicked(checked, "3"))
+        self.button4.clicked.connect( lambda checked: self.button_clicked(checked, "4"))
+        self.button5.clicked.connect( lambda checked: self.button_clicked(checked, "5"))
         self.dices = ""
 
-    def start_timer(self, count=5, interval=100):
+    def start_timer(self, count=7, interval=100):
         """Start timer"""
         timer = QTimer()
         counter = 0
@@ -73,18 +66,23 @@ class MainWindow(QMainWindow):
             self.faces5()
 
     def faces1(self):
+        """Show dice 1"""
         window.dice1.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
     def faces2(self):
+        """Show dice 2"""
         window.dice2.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
     def faces3(self):
+        """Show dice 3"""
         window.dice3.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
     def faces4(self):
+        """Show dice 4"""
         window.dice4.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
     def faces5(self):
+        """Show dice 5"""
         window.dice5.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
 
@@ -104,43 +102,40 @@ class MainWindow(QMainWindow):
     def unhold_dice(self, dice):
         """Dices to unhold"""
         self.dices = self.dices.replace(dice, "")
+        
+    def _get_method(self, method_name):
+        """
+        Uses function getattr() to dynamically get value of an attribute.
+        """
+        return getattr(self, self._OPTIONS[method_name])
 
-    def toggled1(self, checked):
-        """Toggled button1"""
-        self.button1_is_checked = checked
-        print(self.button1_is_checked)
-        self.dice_control(self.button1_is_checked, "1")
-
-    def toggled2(self, checked):
-        """Toggled button2"""
-        self.button2_is_checked = checked
-        print(self.button2_is_checked)
-        self.dice_control(self.button2_is_checked, "2")
-
-    def toggled3(self, checked):
-        """Toggled button3"""
-        self.button3_is_checked = checked
-        print(self.button3_is_checked)
-        self.dice_control(self.button3_is_checked, "3")
-
-    def toggled4(self, checked):
-        """Toggled button4"""
-        self.button4_is_checked = checked
-        print(self.button4_is_checked)
-        self.dice_control(self.button4_is_checked, "4")
-
-    def toggled5(self, checked):
-        """Toggled button5"""
-        self.button5_is_checked = checked
-        print(self.button5_is_checked)
-        self.dice_control(self.button5_is_checked, "5")
-
-    def dice_control(self, checked, dice):
+    def button_clicked(self, checked, button):
+        """Button handler"""
+        if button == "1":
+            self.button1_is_checked = checked
+            self.dice_control(self.button1_is_checked, button, self.button1)
+        if button == "2":
+            self.button2_is_checked = checked
+            self.dice_control(self.button2_is_checked, button, self.button2)
+        if button == "3":
+            self.button3_is_checked = checked
+            self.dice_control(self.button3_is_checked, button, self.button3)
+        if button == "4":
+            self.button4_is_checked = checked
+            self.dice_control(self.button4_is_checked, button, self.button4)
+        if button == "5":
+            self.button5_is_checked = checked
+            self.dice_control(self.button5_is_checked, button, self.button5)
+    
+    
+    def dice_control(self, checked, dice, button):
         """Dice controller"""
         if checked:
             self.hold_dice(dice)
+            button.setText("Holding")
             return
         self.unhold_dice(dice)
+        button.setText("Hold")
 
 app = QApplication(sys.argv)
 window = MainWindow()

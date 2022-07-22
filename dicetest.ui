@@ -61,8 +61,14 @@
        </item>
        <item>
         <widget class="QLabel" name="dice5">
+         <property name="toolTip">
+          <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Dice 5&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+         </property>
          <property name="text">
-          <string>TextLabel</string>
+          <string>Dice 5</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
          </property>
         </widget>
        </item>
@@ -75,35 +81,53 @@
        <item>
         <widget class="QPushButton" name="button1">
          <property name="text">
-          <string>PushButton</string>
+          <string>Hold</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
+         </property>
+         <property name="checked">
+          <bool>false</bool>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="button2">
          <property name="text">
-          <string>PushButton</string>
+          <string>Hold</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="button3">
          <property name="text">
-          <string>PushButton</string>
+          <string>Hold</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="button4">
          <property name="text">
-          <string>PushButton</string>
+          <string>Hold</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>
        <item>
         <widget class="QPushButton" name="button5">
          <property name="text">
-          <string>PushButton</string>
+          <string>Hold</string>
+         </property>
+         <property name="checkable">
+          <bool>true</bool>
          </property>
         </widget>
        </item>

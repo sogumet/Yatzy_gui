@@ -3,7 +3,7 @@ from dice import Hand
 
 
 class Play:
-    """Class play with methods to manage the roll, and turn of players"""
+    """Class play with methods to manage the roll, and the players turn"""
     game_counter = 0
     counter = 0
     scoreList = []              #list with scoreobject
