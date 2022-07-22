@@ -1,3 +1,4 @@
+"""module main with class MainWindow"""
 import os
 import sys
 import random
@@ -7,9 +8,6 @@ from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtGui import QPixmap
 from play import Play
-
-
-
 
 class MainWindow(QMainWindow):
     """"Main class"""
@@ -102,7 +100,7 @@ class MainWindow(QMainWindow):
     def unhold_dice(self, dice):
         """Dices to unhold"""
         self.dices = self.dices.replace(dice, "")
-        
+
     def _get_method(self, method_name):
         """
         Uses function getattr() to dynamically get value of an attribute.
@@ -126,8 +124,8 @@ class MainWindow(QMainWindow):
         if button == "5":
             self.button5_is_checked = checked
             self.dice_control(self.button5_is_checked, button, self.button5)
-    
-    
+
+
     def dice_control(self, checked, dice, button):
         """Dice controller"""
         if checked:
