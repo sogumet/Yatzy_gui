@@ -22,30 +22,46 @@ class MainWindow(QMainWindow):
         super().__init__(*args, **kwargs)
         basedir = os.path.dirname(__file__)
         uic.loadUi(os.path.join(basedir, "dicetest.ui"), self)
-        self.button1.clicked.connect(lambda : self.button_clicked("1"))
-        self.button2.clicked.connect(lambda : self.button_clicked("2"))
-        self.button3.clicked.connect(lambda : self.button_clicked("3"))
-        self.button4.clicked.connect(lambda : self.button_clicked("4"))
-        self.button5.clicked.connect(lambda : self.button_clicked("5"))
-        self.saveOne.clicked.connect(lambda : self.save_as("1", self.one))
-        self.saveTwo.clicked.connect(lambda : self.save_as("2", self.two))
-        self.saveThree.clicked.connect(lambda : self.save_as("3", self.three))
-        self.saveFour.clicked.connect(lambda : self.save_as("4", self.four))
-        self.saveFive.clicked.connect(lambda : self.save_as("5", self.five))
-        self.saveSix.clicked.connect(lambda : self.save_as("6", self.six))
+        self.button1.clicked.connect(lambda : self.hold_button_clicked("1"))
+        self.button2.clicked.connect(lambda : self.hold_button_clicked("2"))
+        self.button3.clicked.connect(lambda : self.hold_button_clicked("3"))
+        self.button4.clicked.connect(lambda : self.hold_button_clicked("4"))
+        self.button5.clicked.connect(lambda : self.hold_button_clicked("5"))
+        self.saveOne.clicked.connect(lambda : self.save_as("1", self.one, self.saveOne))
+        self.saveTwo.clicked.connect(lambda : self.save_as("2", self.two, self.saveTwo))
+        self.saveThree.clicked.connect(lambda : self.save_as("3", self.three,self.saveThree))
+        self.saveFour.clicked.connect(lambda : self.save_as("4", self.four, self.saveFour))
+        self.saveFive.clicked.connect(lambda : self.save_as("5", self.five, self.saveFive))
+        self.saveSix.clicked.connect(lambda : self.save_as("6", self.six, self.saveSix))
+        self.savePair.clicked.connect(lambda : self.save_as("pair", self.pair, self.savePair))
+        self.saveTwoPair.clicked.connect(lambda : self.save_as("twoPair", self.twoPair, self.saveTwoPair))
+        self.saveThreeOf.clicked.connect(lambda : self.save_as("three", self.threeOf, self.saveThreeOf))
+        self.saveFourOf.clicked.connect(lambda : self.save_as("four", self.fourOf, self.saveFourOf))
+        self.saveFull.clicked.connect(lambda : self.save_as("fullHouse", self.full, self.saveFull))
+        self.saveSmall.clicked.connect(lambda : self.save_as("small", self.small, self.saveSmall))
+        self.saveBig.clicked.connect(lambda : self.save_as("large", self.big, self.saveBig))
+        self.saveChanse.clicked.connect(lambda : self.save_as("chanse", self.chanse, self.saveChanse))
+        self.saveYatzy.clicked.connect(lambda : self.save_as("yatzy", self.yatzy, self.saveYatzy))
 
         self.dices = ""
 
-    def save_as(self, save_as, value):
-        """Saving score and reseting buttons"""
+    def save_as(self, save_as, value, button):
+        """Saving score and resetting buttons"""
+        button.setEnabled(False)
         self.play.save_rools(save_as)
-        value.setNum(self.score.board[save_as])
+        value.setText(str(self.score.board[save_as]))
         button_list = [self.button1, self.button2, self.button3, self.button4, self.button5]
-        self.sum.setNum(self.score.board["sum"])
+        self.sum.setText(str(self.score.board["sum"]))
+        self.bonus.setText(str(self.score.board["bonus"]))
+
         for button in button_list:
             if button.isChecked():
                 button.click()
 
+    """ def button_handler():
+        
+        pass
+ """
     def start_timer(self, count=7, interval=100):
         """Start timer"""
         if self.play.counter < 3:
@@ -116,7 +132,7 @@ class MainWindow(QMainWindow):
         """Dices to unhold"""
         self.dices = self.dices.replace(dice, "")
 
-    def button_clicked(self, button):
+    def hold_button_clicked(self, button):
         """Button handler"""
         if button == "1":
             self.dice_control(self.button1.isChecked(), button, self.button1)

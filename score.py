@@ -7,3 +7,5 @@ class Score:
         "5": "", "6": "", "sum": "", "bonus": "", "pair": "", "twoPair": "",
         "three": "", "four": "", "fullHouse": "", "small": "",
         "large": "", "chanse": "", "yatzy": "", "total": "", "hidden": 0 }
+
+        self.used = []
