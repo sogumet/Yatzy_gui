@@ -15,52 +15,67 @@ class MainWindow(QMainWindow):
     dice_grafhics = ["dice_one60", "dice_two60","dice_three60",
             "dice_four60","dice_five60","dice_six60"]
     play = Play()
+    score = play.player
 
     def __init__(self, *args, **kwargs):
 
         super().__init__(*args, **kwargs)
         basedir = os.path.dirname(__file__)
         uic.loadUi(os.path.join(basedir, "dicetest.ui"), self)
-        self.button1_is_checked = False
-        self.button2_is_checked = False
-        self.button3_is_checked = False
-        self.button4_is_checked = False
-        self.button5_is_checked = False
-        self.button1.clicked.connect( lambda checked: self.button_clicked(checked, "1"))
-        self.button2.clicked.connect( lambda checked: self.button_clicked(checked, "2"))
-        self.button3.clicked.connect( lambda checked: self.button_clicked(checked, "3"))
-        self.button4.clicked.connect( lambda checked: self.button_clicked(checked, "4"))
-        self.button5.clicked.connect( lambda checked: self.button_clicked(checked, "5"))
+        self.button1.clicked.connect(lambda : self.button_clicked("1"))
+        self.button2.clicked.connect(lambda : self.button_clicked("2"))
+        self.button3.clicked.connect(lambda : self.button_clicked("3"))
+        self.button4.clicked.connect(lambda : self.button_clicked("4"))
+        self.button5.clicked.connect(lambda : self.button_clicked("5"))
+        self.saveOne.clicked.connect(lambda : self.save_as("1", self.one))
+        self.saveTwo.clicked.connect(lambda : self.save_as("2", self.two))
+        self.saveThree.clicked.connect(lambda : self.save_as("3", self.three))
+        self.saveFour.clicked.connect(lambda : self.save_as("4", self.four))
+        self.saveFive.clicked.connect(lambda : self.save_as("5", self.five))
+        self.saveSix.clicked.connect(lambda : self.save_as("6", self.six))
+
         self.dices = ""
+
+    def save_as(self, save_as, value):
+        """Saving score and reseting buttons"""
+        self.play.save_rools(save_as)
+        value.setNum(self.score.board[save_as])
+        button_list = [self.button1, self.button2, self.button3, self.button4, self.button5]
+        self.sum.setNum(self.score.board["sum"])
+        for button in button_list:
+            if button.isChecked():
+                button.click()
 
     def start_timer(self, count=7, interval=100):
         """Start timer"""
-        timer = QTimer()
-        counter = 0
-        timer.start(interval)
-        def handler():
-            nonlocal counter
-            counter += 1
-            if counter >= count:
-                timer.stop()
-                timer.deleteLater()
-                self.set_dices()
-                print("Finish")
-                print(self.dices)
-        timer.timeout.connect(self.update_faces)
-        timer.timeout.connect(handler)
+        if self.play.counter < 3:
+            timer = QTimer()
+            counter = 0
+            timer.start(interval)
+            def handler():
+                nonlocal counter
+                counter += 1
+                if counter >= count:
+                    timer.stop()
+                    timer.deleteLater()
+                    self.set_dices()
+                    print("Finish")
+                    print(self.dices)
+            timer.timeout.connect(self.update_faces)
+            timer.timeout.connect(handler)
+        else: print("Save")
 
     def update_faces(self):
         """Update label"""
-        if self.button1_is_checked is False:
+        if self.button1.isChecked() is False:
             self.faces1()
-        if self.button2_is_checked is False:
+        if self.button2.isChecked() is False:
             self.faces2()
-        if self.button3_is_checked is False:
+        if self.button3.isChecked() is False:
             self.faces3()
-        if self.button4_is_checked is False:
+        if self.button4.isChecked() is False:
             self.faces4()
-        if self.button5_is_checked is False:
+        if self.button5.isChecked() is False:
             self.faces5()
 
     def faces1(self):
@@ -101,38 +116,27 @@ class MainWindow(QMainWindow):
         """Dices to unhold"""
         self.dices = self.dices.replace(dice, "")
 
-    def _get_method(self, method_name):
-        """
-        Uses function getattr() to dynamically get value of an attribute.
-        """
-        return getattr(self, self._OPTIONS[method_name])
-
-    def button_clicked(self, checked, button):
+    def button_clicked(self, button):
         """Button handler"""
         if button == "1":
-            self.button1_is_checked = checked
-            self.dice_control(self.button1_is_checked, button, self.button1)
+            self.dice_control(self.button1.isChecked(), button, self.button1)
         if button == "2":
-            self.button2_is_checked = checked
-            self.dice_control(self.button2_is_checked, button, self.button2)
+            self.dice_control(self.button2.isChecked(), button, self.button2)
         if button == "3":
-            self.button3_is_checked = checked
-            self.dice_control(self.button3_is_checked, button, self.button3)
+            self.dice_control(self.button3.isChecked(), button, self.button3)
         if button == "4":
-            self.button4_is_checked = checked
-            self.dice_control(self.button4_is_checked, button, self.button4)
+            self.dice_control(self.button4.isChecked(), button, self.button4)
         if button == "5":
-            self.button5_is_checked = checked
-            self.dice_control(self.button5_is_checked, button, self.button5)
+            self.dice_control(self.button5.isChecked(), button, self.button5)
 
 
-    def dice_control(self, checked, dice, button):
+    def dice_control(self, checked, dice_number, button):
         """Dice controller"""
         if checked:
-            self.hold_dice(dice)
+            self.hold_dice(dice_number)
             button.setText("Holding")
             return
-        self.unhold_dice(dice)
+        self.unhold_dice(dice_number)
         button.setText("Hold")
 
 app = QApplication(sys.argv)
