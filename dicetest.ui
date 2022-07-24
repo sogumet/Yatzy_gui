@@ -29,6 +29,9 @@
          <layout class="QGridLayout" name="gridLayout">
           <item row="13" column="3">
            <widget class="QPushButton" name="savePair">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -100,6 +103,9 @@
           </item>
           <item row="1" column="3">
            <widget class="QPushButton" name="saveOne">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -190,6 +196,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="6" column="3">
            <widget class="QPushButton" name="saveTwo">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -222,6 +231,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="7" column="3">
            <widget class="QPushButton" name="saveThree">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -267,6 +279,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="8" column="3">
            <widget class="QPushButton" name="saveFour">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -369,6 +384,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="9" column="3">
            <widget class="QPushButton" name="saveFive">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -376,6 +394,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="10" column="3">
            <widget class="QPushButton" name="saveSix">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -478,6 +499,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="20" column="3">
            <widget class="QPushButton" name="saveChanse">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -556,6 +580,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="21" column="3">
            <widget class="QPushButton" name="saveYatzy">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -568,6 +595,19 @@ background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string>Total</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item row="13" column="0">
+           <widget class="QLabel" name="label_8">
+            <property name="styleSheet">
+             <string notr="true">background-color: rgb(255, 255, 255);</string>
+            </property>
+            <property name="text">
+             <string>Par</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -655,6 +695,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="14" column="3">
            <widget class="QPushButton" name="saveTwoPair">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -662,6 +705,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="15" column="3">
            <widget class="QPushButton" name="saveThreeOf">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -669,6 +715,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="16" column="3">
            <widget class="QPushButton" name="saveFourOf">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -689,6 +738,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="17" column="3">
            <widget class="QPushButton" name="saveFull">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -709,6 +761,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="18" column="3">
            <widget class="QPushButton" name="saveSmall">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -729,6 +784,9 @@ background-color: rgb(255, 255, 255);</string>
           </item>
           <item row="19" column="3">
            <widget class="QPushButton" name="saveBig">
+            <property name="enabled">
+             <bool>false</bool>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -741,19 +799,6 @@ background-color: rgb(255, 255, 255);</string>
             </property>
             <property name="text">
              <string>Stor stege</string>
-            </property>
-            <property name="alignment">
-             <set>Qt::AlignCenter</set>
-            </property>
-           </widget>
-          </item>
-          <item row="13" column="0">
-           <widget class="QLabel" name="label_8">
-            <property name="styleSheet">
-             <string notr="true">background-color: rgb(255, 255, 255);</string>
-            </property>
-            <property name="text">
-             <string>Par</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignCenter</set>
@@ -866,6 +911,9 @@ background-color: rgb(255, 255, 255);</string>
           <layout class="QHBoxLayout" name="horizontalLayout_2">
            <item>
             <widget class="QPushButton" name="button1">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="maximumSize">
               <size>
                <width>80</width>
@@ -882,6 +930,9 @@ background-color: rgb(255, 255, 255);</string>
            </item>
            <item>
             <widget class="QPushButton" name="button2">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="maximumSize">
               <size>
                <width>80</width>
@@ -898,6 +949,9 @@ background-color: rgb(255, 255, 255);</string>
            </item>
            <item>
             <widget class="QPushButton" name="button3">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="maximumSize">
               <size>
                <width>80</width>
@@ -914,6 +968,9 @@ background-color: rgb(255, 255, 255);</string>
            </item>
            <item>
             <widget class="QPushButton" name="button4">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="maximumSize">
               <size>
                <width>80</width>
@@ -930,6 +987,9 @@ background-color: rgb(255, 255, 255);</string>
            </item>
            <item>
             <widget class="QPushButton" name="button5">
+             <property name="enabled">
+              <bool>false</bool>
+             </property>
              <property name="maximumSize">
               <size>
                <width>80</width>
@@ -946,7 +1006,7 @@ background-color: rgb(255, 255, 255);</string>
            </item>
           </layout>
          </widget>
-         <widget class="QPushButton" name="pusher">
+         <widget class="QPushButton" name="roll">
           <property name="geometry">
            <rect>
             <x>140</x>
@@ -969,7 +1029,7 @@ background-color: rgb(255, 255, 255);</string>
            </rect>
           </property>
           <property name="text">
-           <string>Start</string>
+           <string>Restart</string>
           </property>
          </widget>
         </widget>

@@ -4,7 +4,7 @@ import sys
 import random
 
 from PyQt6 import  uic
-from PyQt6.QtCore import QTimer
+from PyQt6.QtCore import QTimer, QProcess
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtGui import QPixmap
 from play import Play
@@ -14,15 +14,23 @@ class MainWindow(QMainWindow):
 
     dice_grafhics = ["dice_one60", "dice_two60","dice_three60",
             "dice_four60","dice_five60","dice_six60"]
+    
     play = Play()
     score = play.player
     save_count = 0
-
+    app = QApplication(sys.argv)
+    
     def __init__(self, *args, **kwargs):
-
+        
         super().__init__(*args, **kwargs)
         basedir = os.path.dirname(__file__)
         uic.loadUi(os.path.join(basedir, "dicetest.ui"), self)
+        self.hold_button_list = [self.button1, self.button2, self.button3, self.button4, self.button5]
+        self.save_button_list = [self.saveOne, self.saveTwo, self.saveThree, self.saveFour, self.saveFive,
+            self.saveOne, self.saveSix, self.savePair, self.saveTwoPair, self.saveThreeOf, self.saveFourOf,
+            self.saveFull, self.saveSmall, self.saveBig, self.saveChanse, self.saveYatzy] 
+        self.roll.pressed.connect(self.start_timer)
+        self.start.clicked.connect(self.restart)
         self.button1.clicked.connect(lambda : self.hold_button_clicked("1"))
         self.button2.clicked.connect(lambda : self.hold_button_clicked("2"))
         self.button3.clicked.connect(lambda : self.hold_button_clicked("3"))
@@ -45,11 +53,19 @@ class MainWindow(QMainWindow):
         self.saveYatzy.clicked.connect(lambda : self.save_as("yatzy", self.yatzy, self.saveYatzy))
 
         self.dices = ""
+        self.show()
+        self.app.exec()
+
+    def restart(self):
+        """Restart"""
+        self.app.quit()
+        status = QProcess.startDetached(sys.executable, sys.argv)
+        print(status)
 
     def save_as(self, save_as, value, button):
         """Saving score and resetting buttons"""
         
-        self.button_handler(button)
+        self.button_handler_save(button)
         self.play.save_rools(save_as)
         value.setText(str(self.score.board[save_as]))
         self.sum.setText(str(self.score.board["sum"]))
@@ -57,15 +73,32 @@ class MainWindow(QMainWindow):
         if self.score.count == 15:
             self.play.finish()
             self.total.setText(str(self.score.board["hidden"]))
+            self.roll.setEnabled(False)
 
-    def button_handler(self, button):
-        button.setEnabled(False)
-        button_list = [self.button1, self.button2, self.button3, self.button4, self.button5]
-
-        for button in button_list:
+    def button_handler_save(self, button):
+        # button.setEnabled(False)
+        self.score.used.append(button)
+        for button in self.hold_button_list:
             if button.isChecked():
                 button.click()
-
+            button.setEnabled(False)
+        for button in self.save_button_list:
+            button.setEnabled(False)
+        self.roll.setEnabled(True)
+    
+    def button_handler_roll(self):
+        for button in self.save_button_list:
+            button.setEnabled(True)
+        for button in self.score.used:
+            button.setEnabled(False)
+        for button in self.hold_button_list:
+            button.setEnabled(True)
+        if self.play.counter == 3:
+            for button in self.hold_button_list:
+                if button.isChecked():
+                    button.click()
+                button.setEnabled(False)
+                self.roll.setEnabled(False)
 
     def start_timer(self, count=7, interval=100):
         """Start timer"""
@@ -101,33 +134,34 @@ class MainWindow(QMainWindow):
 
     def faces1(self):
         """Show dice 1"""
-        window.dice1.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
+        self.dice1.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
     def faces2(self):
         """Show dice 2"""
-        window.dice2.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
+        self.dice2.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
     def faces3(self):
         """Show dice 3"""
-        window.dice3.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
+        self.dice3.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
     def faces4(self):
         """Show dice 4"""
-        window.dice4.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
+        self.dice4.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
     def faces5(self):
         """Show dice 5"""
-        window.dice5.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
+        self.dice5.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
 
     def set_dices(self):
         """Set dices"""
         dices = self.play.roll(self.dices)
-        window.dice1.setPixmap(QPixmap(self.dice_grafhics[dices[0]]))
-        window.dice2.setPixmap(QPixmap(self.dice_grafhics[dices[1]]))
-        window.dice3.setPixmap(QPixmap(self.dice_grafhics[dices[2]]))
-        window.dice4.setPixmap(QPixmap(self.dice_grafhics[dices[3]]))
-        window.dice5.setPixmap(QPixmap(self.dice_grafhics[dices[4]]))
+        self.dice1.setPixmap(QPixmap(self.dice_grafhics[dices[0]]))
+        self.dice2.setPixmap(QPixmap(self.dice_grafhics[dices[1]]))
+        self.dice3.setPixmap(QPixmap(self.dice_grafhics[dices[2]]))
+        self.dice4.setPixmap(QPixmap(self.dice_grafhics[dices[3]]))
+        self.dice5.setPixmap(QPixmap(self.dice_grafhics[dices[4]]))
+        self.button_handler_roll()
 
     def hold_dice(self, dice):
         """Dices to hold"""
@@ -160,8 +194,5 @@ class MainWindow(QMainWindow):
         self.unhold_dice(dice_number)
         button.setText("Hold")
 
-app = QApplication(sys.argv)
-window = MainWindow()
-window.pusher.pressed.connect(window.start_timer)
-window.show()
-app.exec()
+if __name__ == "__main__":
+    MainWindow()
