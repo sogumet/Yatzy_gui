@@ -8,4 +8,6 @@ class Score:
         "three": "", "four": "", "fullHouse": "", "small": "",
         "large": "", "chanse": "", "yatzy": "", "total": "", "hidden": 0 }
 
+        self.count = 0  # counting saves
+
         self.used = []

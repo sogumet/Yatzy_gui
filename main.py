@@ -16,6 +16,7 @@ class MainWindow(QMainWindow):
             "dice_four60","dice_five60","dice_six60"]
     play = Play()
     score = play.player
+    save_count = 0
 
     def __init__(self, *args, **kwargs):
 
@@ -47,21 +48,25 @@ class MainWindow(QMainWindow):
 
     def save_as(self, save_as, value, button):
         """Saving score and resetting buttons"""
-        button.setEnabled(False)
+        
+        self.button_handler(button)
         self.play.save_rools(save_as)
         value.setText(str(self.score.board[save_as]))
-        button_list = [self.button1, self.button2, self.button3, self.button4, self.button5]
         self.sum.setText(str(self.score.board["sum"]))
         self.bonus.setText(str(self.score.board["bonus"]))
+        if self.score.count == 15:
+            self.play.finish()
+            self.total.setText(str(self.score.board["hidden"]))
+
+    def button_handler(self, button):
+        button.setEnabled(False)
+        button_list = [self.button1, self.button2, self.button3, self.button4, self.button5]
 
         for button in button_list:
             if button.isChecked():
                 button.click()
 
-    """ def button_handler():
-        
-        pass
- """
+
     def start_timer(self, count=7, interval=100):
         """Start timer"""
         if self.play.counter < 3:

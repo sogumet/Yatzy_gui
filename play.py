@@ -33,6 +33,15 @@ class Play:
         print("saving one")
         self.save(self.player, self.hand, choice) # init savescore
         self.counter = 0
+        self.game_counter += 1
+        self.player.count += 1
 
+    def finish(self):
+        "Calculating sum when game is finished"
+        for player in self.scoreList:
+            player.board["total"] = player.board["hidden"]
+            if player.board["bonus"] != "":
+                player.board["total"] += 50
+        
 
        
