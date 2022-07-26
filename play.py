@@ -38,10 +38,9 @@ class Play:
 
     def finish(self):
         "Calculating sum when game is finished"
-        for player in self.scoreList:
-            player.board["total"] = player.board["hidden"]
-            if player.board["bonus"] != "":
-                player.board["total"] += 50
+        self.player.board["total"] = self.player.board["hidden"]
+        if self.player.board["bonus"] != "":
+            self.player.board["total"] += 50
         
 
        

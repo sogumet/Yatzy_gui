@@ -84,7 +84,7 @@ class MainWindow(QMainWindow):
         self.bonus.setText(str(self.score.board["bonus"]))
         if self.score.count == 15:
             self.play.finish()
-            self.total.setText(str(self.score.board["hidden"]))
+            self.total.setText(str(self.score.board["total"]))
             self.roll.setEnabled(False)
 
     def button_handler_save(self, button):
@@ -125,7 +125,6 @@ class MainWindow(QMainWindow):
                     timer.stop()
                     timer.deleteLater()
                     self.set_dices()
-                    print("Finish")
                     print(self.dices)
             timer.timeout.connect(self.update_faces)
             timer.timeout.connect(handler)
