@@ -32,6 +32,11 @@
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -89,7 +94,7 @@
            </widget>
           </item>
           <item row="0" column="1">
-           <widget class="QLabel" name="label_14">
+           <widget class="QLabel" name="name">
             <property name="styleSheet">
              <string notr="true">background-color: rgb(255, 255, 255);</string>
             </property>
@@ -105,6 +110,11 @@
            <widget class="QPushButton" name="saveOne">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
             </property>
             <property name="text">
              <string>Save</string>
@@ -199,6 +209,11 @@ background-color: rgb(255, 255, 255);</string>
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -233,6 +248,11 @@ background-color: rgb(255, 255, 255);</string>
            <widget class="QPushButton" name="saveThree">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
             </property>
             <property name="text">
              <string>Save</string>
@@ -281,6 +301,11 @@ background-color: rgb(255, 255, 255);</string>
            <widget class="QPushButton" name="saveFour">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
             </property>
             <property name="text">
              <string>Save</string>
@@ -387,6 +412,11 @@ background-color: rgb(255, 255, 255);</string>
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -396,6 +426,11 @@ background-color: rgb(255, 255, 255);</string>
            <widget class="QPushButton" name="saveSix">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
             </property>
             <property name="text">
              <string>Save</string>
@@ -502,6 +537,11 @@ background-color: rgb(255, 255, 255);</string>
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -582,6 +622,11 @@ background-color: rgb(255, 255, 255);</string>
            <widget class="QPushButton" name="saveYatzy">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
             </property>
             <property name="text">
              <string>Save</string>
@@ -698,6 +743,11 @@ background-color: rgb(255, 255, 255);</string>
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -708,6 +758,11 @@ background-color: rgb(255, 255, 255);</string>
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -717,6 +772,11 @@ background-color: rgb(255, 255, 255);</string>
            <widget class="QPushButton" name="saveFourOf">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
             </property>
             <property name="text">
              <string>Save</string>
@@ -741,6 +801,11 @@ background-color: rgb(255, 255, 255);</string>
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -764,6 +829,11 @@ background-color: rgb(255, 255, 255);</string>
             <property name="enabled">
              <bool>false</bool>
             </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+            </property>
             <property name="text">
              <string>Save</string>
             </property>
@@ -786,6 +856,11 @@ background-color: rgb(255, 255, 255);</string>
            <widget class="QPushButton" name="saveBig">
             <property name="enabled">
              <bool>false</bool>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
             </property>
             <property name="text">
              <string>Save</string>
@@ -920,11 +995,19 @@ background-color: rgb(255, 255, 255);</string>
                <height>16777215</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+             </property>
              <property name="text">
               <string>Hold</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
+             </property>
+             <property name="flat">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -938,6 +1021,11 @@ background-color: rgb(255, 255, 255);</string>
                <width>80</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
              </property>
              <property name="text">
               <string>Hold</string>
@@ -958,6 +1046,10 @@ background-color: rgb(255, 255, 255);</string>
                <height>16777215</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};</string>
+             </property>
              <property name="text">
               <string>Hold</string>
              </property>
@@ -976,6 +1068,11 @@ background-color: rgb(255, 255, 255);</string>
                <width>80</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
              </property>
              <property name="text">
               <string>Hold</string>
@@ -996,11 +1093,19 @@ background-color: rgb(255, 255, 255);</string>
                <height>16777215</height>
               </size>
              </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+             </property>
              <property name="text">
               <string>Hold</string>
              </property>
              <property name="checkable">
               <bool>true</bool>
+             </property>
+             <property name="checked">
+              <bool>false</bool>
              </property>
             </widget>
            </item>
@@ -1015,6 +1120,11 @@ background-color: rgb(255, 255, 255);</string>
             <height>28</height>
            </rect>
           </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
+          </property>
           <property name="text">
            <string>Roll</string>
           </property>
@@ -1027,6 +1137,11 @@ background-color: rgb(255, 255, 255);</string>
             <width>93</width>
             <height>28</height>
            </rect>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};
+</string>
           </property>
           <property name="text">
            <string>Restart</string>

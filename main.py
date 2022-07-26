@@ -8,6 +8,7 @@ from PyQt6.QtCore import QTimer, QProcess
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtGui import QPixmap
 from play import Play
+from name_dialog import NameDialog
 
 class MainWindow(QMainWindow):
     """"Main class"""
@@ -25,6 +26,7 @@ class MainWindow(QMainWindow):
         super().__init__(*args, **kwargs)
         basedir = os.path.dirname(__file__)
         uic.loadUi(os.path.join(basedir, "dicetest.ui"), self)
+        self.dialog = NameDialog()
         self.hold_button_list = [self.button1, self.button2, self.button3, self.button4, self.button5]
         self.save_button_list = [self.saveOne, self.saveTwo, self.saveThree, self.saveFour, self.saveFive,
             self.saveOne, self.saveSix, self.savePair, self.saveTwoPair, self.saveThreeOf, self.saveFourOf,
@@ -36,6 +38,7 @@ class MainWindow(QMainWindow):
         self.button3.clicked.connect(lambda : self.hold_button_clicked("3"))
         self.button4.clicked.connect(lambda : self.hold_button_clicked("4"))
         self.button5.clicked.connect(lambda : self.hold_button_clicked("5"))
+        # self.button5.setStyleSheet("QPushButton" "{""background-color : lightblue;""}""QPushButton::pressed""{""background-color : red;""}""QPushButton::disabled""{""background-color : blue;""}")
         self.saveOne.clicked.connect(lambda : self.save_as("1", self.one, self.saveOne))
         self.saveTwo.clicked.connect(lambda : self.save_as("2", self.two, self.saveTwo))
         self.saveThree.clicked.connect(lambda : self.save_as("3", self.three,self.saveThree))
@@ -51,10 +54,19 @@ class MainWindow(QMainWindow):
         self.saveBig.clicked.connect(lambda : self.save_as("large", self.big, self.saveBig))
         self.saveChanse.clicked.connect(lambda : self.save_as("chanse", self.chanse, self.saveChanse))
         self.saveYatzy.clicked.connect(lambda : self.save_as("yatzy", self.yatzy, self.saveYatzy))
+        self.dialog.dialogOk.clicked.connect(self.ok_clicked)
 
         self.dices = ""
         self.show()
+        self.dialog.show()
         self.app.exec()
+        
+
+
+    def ok_clicked(self):
+        """Dialog name ok clicked"""
+        self.score.board["name"] = self.dialog.nameEdit.text()
+        self.name.setText(self.score.board["name"])
 
     def restart(self):
         """Restart"""
