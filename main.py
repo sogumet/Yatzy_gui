@@ -15,22 +15,24 @@ class MainWindow(QMainWindow):
 
     dice_grafhics = ["dice_one60", "dice_two60","dice_three60",
             "dice_four60","dice_five60","dice_six60"]
-    
+
     play = Play()
-    score = play.player
+    player = play.player
     save_count = 0
     app = QApplication(sys.argv)
-    
+
     def __init__(self, *args, **kwargs):
-        
+
         super().__init__(*args, **kwargs)
         basedir = os.path.dirname(__file__)
-        uic.loadUi(os.path.join(basedir, "dicetest.ui"), self)
+        uic.loadUi(os.path.join(basedir, "yatzy.ui"), self)
         self.dialog = NameDialog()
-        self.hold_button_list = [self.button1, self.button2, self.button3, self.button4, self.button5]
-        self.save_button_list = [self.saveOne, self.saveTwo, self.saveThree, self.saveFour, self.saveFive,
-            self.saveOne, self.saveSix, self.savePair, self.saveTwoPair, self.saveThreeOf, self.saveFourOf,
-            self.saveFull, self.saveSmall, self.saveBig, self.saveChanse, self.saveYatzy] 
+        self.hold_button_list = [self.button1, self.button2, self.button3, self.button4,
+            self.button5]
+        self.save_button_list = [self.saveOne, self.saveTwo, self.saveThree, self.saveFour,
+            self.saveFive, self.saveOne, self.saveSix, self.savePair, self.saveTwoPair,
+            self.saveThreeOf, self.saveFourOf,self.saveFull, self.saveSmall, self.saveBig,
+            self.saveChanse, self.saveYatzy]
         self.roll.pressed.connect(self.start_timer)
         self.start.clicked.connect(self.restart)
         self.button1.clicked.connect(lambda : self.hold_button_clicked("1"))
@@ -38,7 +40,6 @@ class MainWindow(QMainWindow):
         self.button3.clicked.connect(lambda : self.hold_button_clicked("3"))
         self.button4.clicked.connect(lambda : self.hold_button_clicked("4"))
         self.button5.clicked.connect(lambda : self.hold_button_clicked("5"))
-        # self.button5.setStyleSheet("QPushButton" "{""background-color : lightblue;""}""QPushButton::pressed""{""background-color : red;""}""QPushButton::disabled""{""background-color : blue;""}")
         self.saveOne.clicked.connect(lambda : self.save_as("1", self.one, self.saveOne))
         self.saveTwo.clicked.connect(lambda : self.save_as("2", self.two, self.saveTwo))
         self.saveThree.clicked.connect(lambda : self.save_as("3", self.three,self.saveThree))
@@ -46,27 +47,27 @@ class MainWindow(QMainWindow):
         self.saveFive.clicked.connect(lambda : self.save_as("5", self.five, self.saveFive))
         self.saveSix.clicked.connect(lambda : self.save_as("6", self.six, self.saveSix))
         self.savePair.clicked.connect(lambda : self.save_as("pair", self.pair, self.savePair))
-        self.saveTwoPair.clicked.connect(lambda : self.save_as("twoPair", self.twoPair, self.saveTwoPair))
-        self.saveThreeOf.clicked.connect(lambda : self.save_as("three", self.threeOf, self.saveThreeOf))
+        self.saveTwoPair.clicked.connect(lambda : self.save_as("twoPair", self.twoPair,
+            self.saveTwoPair))
+        self.saveThreeOf.clicked.connect(lambda : self.save_as("three", self.threeOf,
+            self.saveThreeOf))
         self.saveFourOf.clicked.connect(lambda : self.save_as("four", self.fourOf, self.saveFourOf))
         self.saveFull.clicked.connect(lambda : self.save_as("fullHouse", self.full, self.saveFull))
         self.saveSmall.clicked.connect(lambda : self.save_as("small", self.small, self.saveSmall))
         self.saveBig.clicked.connect(lambda : self.save_as("large", self.big, self.saveBig))
-        self.saveChanse.clicked.connect(lambda : self.save_as("chanse", self.chanse, self.saveChanse))
+        self.saveChanse.clicked.connect(lambda : self.save_as("chanse", self.chanse,
+            self.saveChanse))
         self.saveYatzy.clicked.connect(lambda : self.save_as("yatzy", self.yatzy, self.saveYatzy))
         self.dialog.dialogOk.clicked.connect(self.ok_clicked)
-
         self.dices = ""
         self.show()
         self.dialog.show()
         self.app.exec()
-        
-
 
     def ok_clicked(self):
         """Dialog name ok clicked"""
-        self.score.board["name"] = self.dialog.nameEdit.text()
-        self.name.setText(self.score.board["name"])
+        self.player.score["name"] = self.dialog.nameEdit.text()
+        self.name.setText(self.player.score["name"])
 
     def restart(self):
         """Restart"""
@@ -75,21 +76,20 @@ class MainWindow(QMainWindow):
         print(status)
 
     def save_as(self, save_as, value, button):
-        """Saving score and resetting buttons"""
-        
+        """Saving player and resetting buttons"""
         self.button_handler_save(button)
         self.play.save_rools(save_as)
-        value.setText(str(self.score.board[save_as]))
-        self.sum.setText(str(self.score.board["sum"]))
-        self.bonus.setText(str(self.score.board["bonus"]))
-        if self.score.count == 15:
+        value.setText(str(self.player.score[save_as]))
+        self.sum.setText(str(self.player.score["sum"]))
+        self.bonus.setText(str(self.player.score["bonus"]))
+        if self.player.count == 15:
             self.play.finish()
-            self.total.setText(str(self.score.board["total"]))
+            self.total.setText(str(self.player.score["total"]))
             self.roll.setEnabled(False)
 
     def button_handler_save(self, button):
-        # button.setEnabled(False)
-        self.score.used.append(button)
+        """Button handler when save is clicked"""
+        self.player.used.append(button)
         for button in self.hold_button_list:
             if button.isChecked():
                 button.click()
@@ -97,11 +97,12 @@ class MainWindow(QMainWindow):
         for button in self.save_button_list:
             button.setEnabled(False)
         self.roll.setEnabled(True)
-    
+
     def button_handler_roll(self):
+        """Button handler after roll is clicked"""
         for button in self.save_button_list:
             button.setEnabled(True)
-        for button in self.score.used:
+        for button in self.player.used:
             button.setEnabled(False)
         for button in self.hold_button_list:
             button.setEnabled(True)

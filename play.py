@@ -1,7 +1,7 @@
 """Module play with class Play"""
 from dice import Hand
 from save_score import SaveScore
-from score import Score
+from player import Player
 
 
 class Play:
@@ -11,7 +11,7 @@ class Play:
     scoreList = []              #list with scoreobject
     hand = Hand()
     save = SaveScore
-    player = Score("Kent")
+    player = Player("Kent")
 
     def roll(self, choise):
         "Rolling dices"
@@ -26,7 +26,6 @@ class Play:
             dices.append(val.value - 1)
         self.counter += 1
         return dices
-    
 
     def save_rools(self, choice):
         """Save method"""
@@ -38,9 +37,6 @@ class Play:
 
     def finish(self):
         "Calculating sum when game is finished"
-        self.player.board["total"] = self.player.board["hidden"]
-        if self.player.board["bonus"] != "":
-            self.player.board["total"] += 50
-        
-
-       
+        self.player.score["total"] = self.player.score["hidden"]
+        if self.player.score["bonus"] != "":
+            self.player.score["total"] += 50

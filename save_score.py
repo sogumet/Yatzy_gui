@@ -52,11 +52,11 @@ class SaveScore:
             self.stroke(choice, choice)
         else:
             self.save(choice, val)
-            if self.player.board['sum'] == '':
-                self.player.board['sum'] = 0
-            self.player.board['sum'] += val
-        if self.player.board['sum'] != '' and self.player.board['sum'] > 62:
-            self.player.board['bonus'] = 50
+            if self.player.score['sum'] == '':
+                self.player.score['sum'] = 0
+            self.player.score['sum'] += val
+        if self.player.score['sum'] != '' and self.player.score['sum'] > 62:
+            self.player.score['bonus'] = 50
 
     def save_pair(self, _unused=False):
         """Saving pair"""
@@ -161,8 +161,8 @@ class SaveScore:
                 return
         if values.count(size):
             print(f"Saving as {val} straight")
-            self.player.board[val] = 14 + size
-            self.player.board["hidden"] += 14 + size
+            self.player.score[val] = 14 + size
+            self.player.score["hidden"] += 14 + size
 
     def save_chanse(self, _unused=False):
         """Saving chanse"""
@@ -184,10 +184,10 @@ class SaveScore:
     def save(self, choice, val):
         """General save"""
         print(f"Saving as {choice}")
-        self.player.board[choice] = val
-        self.player.board["hidden"] += val
+        self.player.score[choice] = val
+        self.player.score["hidden"] += val
 
     def stroke(self, choice, val):
         """General stroke"""
         print(f"Deleting {val}")
-        self.player.board[choice] = "-"
+        self.player.score[choice] = "-"
