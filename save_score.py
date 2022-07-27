@@ -44,6 +44,7 @@ class SaveScore:
 
     def save_numbers(self, choice):
         """Saving 1 to 6 """
+        print("Player: ", self.player)
         val = 0
         for i in self.hand.hand:
             if i.value == int(choice):
