@@ -125,7 +125,7 @@ class MainWindow(QMainWindow):
                 self.roll.setEnabled(False)
                 for x in range(self.play.numb_of_player):
                     self.names[x].setStyleSheet("QLabel { background-color : #ffffff;}")
-                    return   
+                return   
         self.play.activ_player_counter += 1
         self.player = self.play.active_player()
         self.show_activ_player()
