@@ -6,9 +6,15 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1406</width>
-    <height>864</height>
+    <width>995</width>
+    <height>800</height>
    </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1200</width>
+    <height>800</height>
+   </size>
   </property>
   <property name="windowTitle">
    <string>MainWindow</string>
@@ -3289,11 +3295,14 @@ QPushButton {background-color: #ababab};
        </item>
        <item>
         <widget class="QWidget" name="widget" native="true">
+         <property name="layoutDirection">
+          <enum>Qt::LeftToRight</enum>
+         </property>
          <layout class="QVBoxLayout" name="verticalLayout_2">
           <item>
            <widget class="QWidget" name="widget" native="true">
             <layout class="QGridLayout" name="gridLayout_2">
-             <item row="1" column="4">
+             <item row="2" column="4">
               <widget class="QPushButton" name="button5">
                <property name="enabled">
                 <bool>false</bool>
@@ -3320,7 +3329,7 @@ QPushButton {background-color: #ababab};
                </property>
               </widget>
              </item>
-             <item row="1" column="3">
+             <item row="2" column="3">
               <widget class="QPushButton" name="button4">
                <property name="enabled">
                 <bool>false</bool>
@@ -3344,7 +3353,26 @@ QPushButton {background-color: #ababab};
                </property>
               </widget>
              </item>
-             <item row="1" column="0">
+             <item row="0" column="0">
+              <widget class="QLabel" name="dice1">
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>60</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>yatsy1.png</pixmap>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="2" column="0">
               <widget class="QPushButton" name="button1">
                <property name="enabled">
                 <bool>false</bool>
@@ -3371,7 +3399,7 @@ QPushButton {background-color: #ababab};
                </property>
               </widget>
              </item>
-             <item row="1" column="2">
+             <item row="2" column="2">
               <widget class="QPushButton" name="button3">
                <property name="enabled">
                 <bool>false</bool>
@@ -3394,7 +3422,7 @@ QPushButton {background-color: #ababab};</string>
                </property>
               </widget>
              </item>
-             <item row="1" column="1">
+             <item row="2" column="1">
               <widget class="QPushButton" name="button2">
                <property name="enabled">
                 <bool>false</bool>
@@ -3422,28 +3450,15 @@ QPushButton {background-color: #ababab};
               <widget class="QLabel" name="dice3">
                <property name="maximumSize">
                 <size>
-                 <width>80</width>
-                 <height>80</height>
+                 <width>60</width>
+                 <height>60</height>
                 </size>
                </property>
                <property name="text">
-                <string>Dice 3</string>
+                <string/>
                </property>
-              </widget>
-             </item>
-             <item row="0" column="4">
-              <widget class="QLabel" name="dice5">
-               <property name="maximumSize">
-                <size>
-                 <width>80</width>
-                 <height>80</height>
-                </size>
-               </property>
-               <property name="toolTip">
-                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Dice 5&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
-               </property>
-               <property name="text">
-                <string>Dice 5</string>
+               <property name="pixmap">
+                <pixmap>yatsy1.png</pixmap>
                </property>
                <property name="alignment">
                 <set>Qt::AlignCenter</set>
@@ -3454,12 +3469,18 @@ QPushButton {background-color: #ababab};
               <widget class="QLabel" name="dice2">
                <property name="maximumSize">
                 <size>
-                 <width>80</width>
-                 <height>80</height>
+                 <width>60</width>
+                 <height>60</height>
                 </size>
                </property>
                <property name="text">
-                <string>Dice 2</string>
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>yatsy2.png</pixmap>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
@@ -3467,25 +3488,40 @@ QPushButton {background-color: #ababab};
               <widget class="QLabel" name="dice4">
                <property name="maximumSize">
                 <size>
-                 <width>80</width>
-                 <height>80</height>
+                 <width>60</width>
+                 <height>60</height>
                 </size>
                </property>
                <property name="text">
-                <string>Dice 4</string>
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>yatsy2.png</pixmap>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="dice1">
+             <item row="0" column="4">
+              <widget class="QLabel" name="dice5">
                <property name="maximumSize">
                 <size>
-                 <width>80</width>
-                 <height>80</height>
+                 <width>60</width>
+                 <height>60</height>
                 </size>
                </property>
+               <property name="toolTip">
+                <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;Dice 5&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+               </property>
                <property name="text">
-                <string>Dice 1</string>
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>yatsy1.png</pixmap>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
@@ -3553,7 +3589,7 @@ QPushButton {background-color: #ababab};
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1406</width>
+     <width>995</width>
      <height>26</height>
     </rect>
    </property>
