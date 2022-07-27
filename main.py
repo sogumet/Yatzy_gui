@@ -1,5 +1,4 @@
 """module main with class MainWindow"""
-from ntpath import samefile
 import os
 import sys
 import random
@@ -37,6 +36,19 @@ class MainWindow(QMainWindow):
         self.names = {0: self.name_1, 1: self.name_2, 2: self.name_3, 3: self.name_4}
         self.one = {0: self.one_1, 1: self.one_2, 2: self.one_3, 3: self.one_4}
         self.two = {0: self.two_1, 1: self.two_2, 2: self.two_3, 3: self.two_4}
+        self.three = {0: self.three_1, 1: self.three_2, 2: self.three_3, 3: self.three_4}
+        self.four = {0: self.four_1, 1: self.four_2, 2: self.four_3, 3: self.four_4}
+        self.five = {0: self.five_1, 1: self.five_2, 2: self.five_3, 3: self.five_4}
+        self.six = {0: self.six_1, 1: self.six_2, 2: self.six_3, 3: self.six_4}
+        self.pair = {0: self.pair_1, 1: self.pair_2, 2: self.pair_3, 3: self.pair_4}
+        self.two_pair = {0: self.twoPair_1, 1: self.twoPair_2, 2: self.twoPair_3, 3: self.twoPair_4}
+        self.three_of = {0: self.threeOf_1, 1: self.threeOf_2, 2: self.threeOf_3, 3: self.threeOf_4}
+        self.four_of = {0: self.fourOf_1, 1: self.fourOf_2, 2: self.fourOf_3, 3: self.fourOf_4}
+        self.full = {0: self.full_1, 1: self.full_2, 2: self.full_3, 3: self.full_4}
+        self.small = {0: self.small_1, 1: self.small_2, 2: self.small_3, 3: self.small_4}
+        self.big = {0: self.big_1, 1: self.big_2, 2: self.big_3, 3: self.big_4}
+        self.chanse = {0: self.chanse_1, 1: self.chanse_2, 2: self.chanse_3, 3: self.chanse_4}
+        self.yatzy = {0: self.yatzy_1, 1: self.yatzy_2, 2: self.yatzy_3, 3: self.yatzy_4}
         self.sum = {0: self.sum_1, 1: self.sum_2, 2: self.sum_3, 3: self.sum_4}
         self.bonus = {0: self.bonus_1, 1: self.bonus_2, 2: self.bonus_3, 3: self.bonus_4}
         self.save_button_list = [self.saveOne, self.saveTwo, self.saveThree, self.saveFour,
@@ -52,22 +64,19 @@ class MainWindow(QMainWindow):
         self.button5.clicked.connect(lambda : self.hold_button_clicked("5"))
         self.saveOne.clicked.connect(lambda : self.save_as("1", self.one[self.play.activ_player_counter], self.saveOne, self.player))
         self.saveTwo.clicked.connect(lambda : self.save_as("2", self.two[self.play.activ_player_counter], self.saveTwo, self.player))
-        # self.saveThree.clicked.connect(lambda : self.save_as("3", self.three,self.saveThree))
-        # self.saveFour.clicked.connect(lambda : self.save_as("4", self.four, self.saveFour))
-        # self.saveFive.clicked.connect(lambda : self.save_as("5", self.five, self.saveFive))
-        # self.saveSix.clicked.connect(lambda : self.save_as("6", self.six, self.saveSix))
-        # self.savePair.clicked.connect(lambda : self.save_as("pair", self.pair, self.savePair))
-        # self.saveTwoPair.clicked.connect(lambda : self.save_as("twoPair", self.twoPair,
-            # self.saveTwoPair))
-        # self.saveThreeOf.clicked.connect(lambda : self.save_as("three", self.threeOf,
-            # self.saveThreeOf))
-        # self.saveFourOf.clicked.connect(lambda : self.save_as("four", self.fourOf, self.saveFourOf))
-        # self.saveFull.clicked.connect(lambda : self.save_as("fullHouse", self.full, self.saveFull))
-        # self.saveSmall.clicked.connect(lambda : self.save_as("small", self.small, self.saveSmall))
-        # self.saveBig.clicked.connect(lambda : self.save_as("large", self.big, self.saveBig))
-        # self.saveChanse.clicked.connect(lambda : self.save_as("chanse", self.chanse,
-            # self.saveChanse))
-        # self.saveYatzy.clicked.connect(lambda : self.save_as("yatzy", self.yatzy, self.saveYatzy))
+        self.saveThree.clicked.connect(lambda : self.save_as("3", self.three[self.play.activ_player_counter], self.saveThree, self.player))
+        self.saveFour.clicked.connect(lambda : self.save_as("4", self.four[self.play.activ_player_counter], self.saveFour, self.player))
+        self.saveFive.clicked.connect(lambda : self.save_as("5", self.five[self.play.activ_player_counter], self.saveFive, self.player))
+        self.saveSix.clicked.connect(lambda : self.save_as("6", self.six[self.play.activ_player_counter], self.saveSix, self.player))
+        self.savePair.clicked.connect(lambda : self.save_as("pair", self.pair[self.play.activ_player_counter], self.savePair, self.player))
+        self.saveTwoPair.clicked.connect(lambda : self.save_as("twoPair", self.two_pair[self.play.activ_player_counter], self.saveTwoPair, self.player))
+        self.saveThreeOf.clicked.connect(lambda : self.save_as("three", self.three_of[self.play.activ_player_counter], self.saveThreeOf, self.player))
+        self.saveFourOf.clicked.connect(lambda : self.save_as("four", self.four_of[self.play.activ_player_counter], self.saveFourOf, self.player))
+        self.saveFull.clicked.connect(lambda : self.save_as("fullHouse", self.full[self.play.activ_player_counter], self.saveFull, self.player))
+        self.saveSmall.clicked.connect(lambda : self.save_as("small", self.small[self.play.activ_player_counter], self.saveSmall, self.player))
+        self.saveBig.clicked.connect(lambda : self.save_as("large", self.big[self.play.activ_player_counter], self.saveBig, self.player))
+        self.saveChanse.clicked.connect(lambda : self.save_as("chanse", self.chanse[self.play.activ_player_counter], self.saveChanse, self.player))
+        self.saveYatzy.clicked.connect(lambda : self.save_as("yatzy", self.yatzy[self.play.activ_player_counter], self.saveYatzy, self.player))
         self.name_dialog.dialogOk.clicked.connect(self.ok_clicked)
         self.dices = ""
         self.show()
