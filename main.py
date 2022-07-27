@@ -51,6 +51,7 @@ class MainWindow(QMainWindow):
         self.yatzy = {0: self.yatzy_1, 1: self.yatzy_2, 2: self.yatzy_3, 3: self.yatzy_4}
         self.sum = {0: self.sum_1, 1: self.sum_2, 2: self.sum_3, 3: self.sum_4}
         self.bonus = {0: self.bonus_1, 1: self.bonus_2, 2: self.bonus_3, 3: self.bonus_4}
+        self.total = {0: self.total_1, 1: self.total_2, 2: self.total_3, 3: self.total_4}
         self.save_button_list = [self.saveOne, self.saveTwo, self.saveThree, self.saveFour,
             self.saveFive, self.saveOne, self.saveSix, self.savePair, self.saveTwoPair,
             self.saveThreeOf, self.saveFourOf,self.saveFull, self.saveSmall, self.saveBig,
@@ -98,7 +99,7 @@ class MainWindow(QMainWindow):
             self.player = self.play.player(self.name_dialog.nameEdit.text())
             self.names[x].setText(self.player.score["name"])
         self.player = self.play.active_player()     #start player
-            
+        self.names[0].setStyleSheet("QLabel { background-color : #e6e6e6;}")
 
     def ok_clicked(self):
         """Dialog name ok clicked"""
@@ -119,11 +120,15 @@ class MainWindow(QMainWindow):
         self.bonus[self.play.activ_player_counter].setText(str(player.score["bonus"]))
         if player.count == 15:
             self.play.finish(player)
-            self.total.setText(str(player.score["total"]))
-            self.roll.setEnabled(False)
+            self.total[self.play.activ_player_counter].setText(str(player.score["total"]))
+            if self.play.activ_player_counter == self.play.numb_of_player - 1:
+                self.roll.setEnabled(False)
+                for x in range(self.play.numb_of_player):
+                    self.names[x].setStyleSheet("QLabel { background-color : #ffffff;}")
+                    return   
         self.play.activ_player_counter += 1
         self.player = self.play.active_player()
-        
+        self.show_activ_player()
 
     def button_handler_save(self, button, player):
         """Button handler when save is clicked"""
@@ -135,6 +140,13 @@ class MainWindow(QMainWindow):
         for button in self.save_button_list:
             button.setEnabled(False)
         self.roll.setEnabled(True)
+        
+    
+    def show_activ_player(self):
+        """Highlighting actic player in gui"""
+        for x in range(self.play.numb_of_player):
+            self.names[x].setStyleSheet("QLabel { background-color : #ffffff;}")
+        self.names[self.play.activ_player_counter].setStyleSheet("QLabel { background-color : #e6e6e6;}")
 
     def button_handler_roll(self, player):
         """Button handler after roll is clicked"""
