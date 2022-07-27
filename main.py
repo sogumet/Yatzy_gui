@@ -8,7 +8,7 @@ from PyQt6.QtCore import QTimer, QProcess
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtGui import QPixmap
 from play import Play
-from name_dialog import NameDialog
+from name_dialog import NameDialog, NumberOfPlayerDialog
 
 class MainWindow(QMainWindow):
     """"Main class"""
@@ -16,21 +16,46 @@ class MainWindow(QMainWindow):
     dice_grafhics = ["dice_one60", "dice_two60","dice_three60",
             "dice_four60","dice_five60","dice_six60"]
     
+    
+
     play = Play()
-    score = play.player
+    # player = play.player
     save_count = 0
     app = QApplication(sys.argv)
-    
+    player = ""
+
     def __init__(self, *args, **kwargs):
-        
+
         super().__init__(*args, **kwargs)
         basedir = os.path.dirname(__file__)
-        uic.loadUi(os.path.join(basedir, "dicetest.ui"), self)
-        self.dialog = NameDialog()
-        self.hold_button_list = [self.button1, self.button2, self.button3, self.button4, self.button5]
-        self.save_button_list = [self.saveOne, self.saveTwo, self.saveThree, self.saveFour, self.saveFive,
-            self.saveOne, self.saveSix, self.savePair, self.saveTwoPair, self.saveThreeOf, self.saveFourOf,
-            self.saveFull, self.saveSmall, self.saveBig, self.saveChanse, self.saveYatzy] 
+        uic.loadUi(os.path.join(basedir, "yatzy.ui"), self)
+        self.name_dialog = NameDialog()
+        self.number_of_player_dialog = NumberOfPlayerDialog()
+        self.hold_button_list = [self.button1, self.button2, self.button3, self.button4,
+            self.button5]
+        self.names = {0: self.name_1, 1: self.name_2, 2: self.name_3, 3: self.name_4}
+        self.one = {0: self.one_1, 1: self.one_2, 2: self.one_3, 3: self.one_4}
+        self.two = {0: self.two_1, 1: self.two_2, 2: self.two_3, 3: self.two_4}
+        self.three = {0: self.three_1, 1: self.three_2, 2: self.three_3, 3: self.three_4}
+        self.four = {0: self.four_1, 1: self.four_2, 2: self.four_3, 3: self.four_4}
+        self.five = {0: self.five_1, 1: self.five_2, 2: self.five_3, 3: self.five_4}
+        self.six = {0: self.six_1, 1: self.six_2, 2: self.six_3, 3: self.six_4}
+        self.pair = {0: self.pair_1, 1: self.pair_2, 2: self.pair_3, 3: self.pair_4}
+        self.two_pair = {0: self.twoPair_1, 1: self.twoPair_2, 2: self.twoPair_3, 3: self.twoPair_4}
+        self.three_of = {0: self.threeOf_1, 1: self.threeOf_2, 2: self.threeOf_3, 3: self.threeOf_4}
+        self.four_of = {0: self.fourOf_1, 1: self.fourOf_2, 2: self.fourOf_3, 3: self.fourOf_4}
+        self.full = {0: self.full_1, 1: self.full_2, 2: self.full_3, 3: self.full_4}
+        self.small = {0: self.small_1, 1: self.small_2, 2: self.small_3, 3: self.small_4}
+        self.big = {0: self.big_1, 1: self.big_2, 2: self.big_3, 3: self.big_4}
+        self.chanse = {0: self.chanse_1, 1: self.chanse_2, 2: self.chanse_3, 3: self.chanse_4}
+        self.yatzy = {0: self.yatzy_1, 1: self.yatzy_2, 2: self.yatzy_3, 3: self.yatzy_4}
+        self.sum = {0: self.sum_1, 1: self.sum_2, 2: self.sum_3, 3: self.sum_4}
+        self.bonus = {0: self.bonus_1, 1: self.bonus_2, 2: self.bonus_3, 3: self.bonus_4}
+        self.total = {0: self.total_1, 1: self.total_2, 2: self.total_3, 3: self.total_4}
+        self.save_button_list = [self.saveOne, self.saveTwo, self.saveThree, self.saveFour,
+            self.saveFive, self.saveOne, self.saveSix, self.savePair, self.saveTwoPair,
+            self.saveThreeOf, self.saveFourOf,self.saveFull, self.saveSmall, self.saveBig,
+            self.saveChanse, self.saveYatzy]
         self.roll.pressed.connect(self.start_timer)
         self.start.clicked.connect(self.restart)
         self.button1.clicked.connect(lambda : self.hold_button_clicked("1"))
@@ -38,35 +63,47 @@ class MainWindow(QMainWindow):
         self.button3.clicked.connect(lambda : self.hold_button_clicked("3"))
         self.button4.clicked.connect(lambda : self.hold_button_clicked("4"))
         self.button5.clicked.connect(lambda : self.hold_button_clicked("5"))
-        # self.button5.setStyleSheet("QPushButton" "{""background-color : lightblue;""}""QPushButton::pressed""{""background-color : red;""}""QPushButton::disabled""{""background-color : blue;""}")
-        self.saveOne.clicked.connect(lambda : self.save_as("1", self.one, self.saveOne))
-        self.saveTwo.clicked.connect(lambda : self.save_as("2", self.two, self.saveTwo))
-        self.saveThree.clicked.connect(lambda : self.save_as("3", self.three,self.saveThree))
-        self.saveFour.clicked.connect(lambda : self.save_as("4", self.four, self.saveFour))
-        self.saveFive.clicked.connect(lambda : self.save_as("5", self.five, self.saveFive))
-        self.saveSix.clicked.connect(lambda : self.save_as("6", self.six, self.saveSix))
-        self.savePair.clicked.connect(lambda : self.save_as("pair", self.pair, self.savePair))
-        self.saveTwoPair.clicked.connect(lambda : self.save_as("twoPair", self.twoPair, self.saveTwoPair))
-        self.saveThreeOf.clicked.connect(lambda : self.save_as("three", self.threeOf, self.saveThreeOf))
-        self.saveFourOf.clicked.connect(lambda : self.save_as("four", self.fourOf, self.saveFourOf))
-        self.saveFull.clicked.connect(lambda : self.save_as("fullHouse", self.full, self.saveFull))
-        self.saveSmall.clicked.connect(lambda : self.save_as("small", self.small, self.saveSmall))
-        self.saveBig.clicked.connect(lambda : self.save_as("large", self.big, self.saveBig))
-        self.saveChanse.clicked.connect(lambda : self.save_as("chanse", self.chanse, self.saveChanse))
-        self.saveYatzy.clicked.connect(lambda : self.save_as("yatzy", self.yatzy, self.saveYatzy))
-        self.dialog.dialogOk.clicked.connect(self.ok_clicked)
-
+        self.saveOne.clicked.connect(lambda : self.save_as("1", self.one[self.play.activ_player_counter], self.saveOne, self.player))
+        self.saveTwo.clicked.connect(lambda : self.save_as("2", self.two[self.play.activ_player_counter], self.saveTwo, self.player))
+        self.saveThree.clicked.connect(lambda : self.save_as("3", self.three[self.play.activ_player_counter], self.saveThree, self.player))
+        self.saveFour.clicked.connect(lambda : self.save_as("4", self.four[self.play.activ_player_counter], self.saveFour, self.player))
+        self.saveFive.clicked.connect(lambda : self.save_as("5", self.five[self.play.activ_player_counter], self.saveFive, self.player))
+        self.saveSix.clicked.connect(lambda : self.save_as("6", self.six[self.play.activ_player_counter], self.saveSix, self.player))
+        self.savePair.clicked.connect(lambda : self.save_as("pair", self.pair[self.play.activ_player_counter], self.savePair, self.player))
+        self.saveTwoPair.clicked.connect(lambda : self.save_as("twoPair", self.two_pair[self.play.activ_player_counter], self.saveTwoPair, self.player))
+        self.saveThreeOf.clicked.connect(lambda : self.save_as("three", self.three_of[self.play.activ_player_counter], self.saveThreeOf, self.player))
+        self.saveFourOf.clicked.connect(lambda : self.save_as("four", self.four_of[self.play.activ_player_counter], self.saveFourOf, self.player))
+        self.saveFull.clicked.connect(lambda : self.save_as("fullHouse", self.full[self.play.activ_player_counter], self.saveFull, self.player))
+        self.saveSmall.clicked.connect(lambda : self.save_as("small", self.small[self.play.activ_player_counter], self.saveSmall, self.player))
+        self.saveBig.clicked.connect(lambda : self.save_as("large", self.big[self.play.activ_player_counter], self.saveBig, self.player))
+        self.saveChanse.clicked.connect(lambda : self.save_as("chanse", self.chanse[self.play.activ_player_counter], self.saveChanse, self.player))
+        self.saveYatzy.clicked.connect(lambda : self.save_as("yatzy", self.yatzy[self.play.activ_player_counter], self.saveYatzy, self.player))
+        self.name_dialog.dialogOk.clicked.connect(self.ok_clicked)
         self.dices = ""
         self.show()
-        self.dialog.show()
+        self.game_prepare()
         self.app.exec()
         
-
+        
+    
+    def game_prepare(self):
+        """Game start"""
+        self.number_of_player_dialog.exec()
+        self.play.numb_of_player = self.number_of_player_dialog.numberOfPlayer.value()
+        print("Number of player: ", self.play.numb_of_player)
+        for x in range(self.play.numb_of_player):
+            number = str(x+1)
+            self.name_dialog.label.setText(f"Enter name of player {number}:")
+            self.name_dialog.nameEdit.setText("")
+            self.name_dialog.exec()
+            self.player = self.play.player(self.name_dialog.nameEdit.text())
+            self.names[x].setText(self.player.score["name"])
+        self.player = self.play.active_player()     #start player
+        self.names[0].setStyleSheet("QLabel { background-color : #e6e6e6;}")
 
     def ok_clicked(self):
         """Dialog name ok clicked"""
-        self.score.board["name"] = self.dialog.nameEdit.text()
-        self.name.setText(self.score.board["name"])
+        
 
     def restart(self):
         """Restart"""
@@ -74,22 +111,28 @@ class MainWindow(QMainWindow):
         status = QProcess.startDetached(sys.executable, sys.argv)
         print(status)
 
-    def save_as(self, save_as, value, button):
-        """Saving score and resetting buttons"""
-        
-        self.button_handler_save(button)
-        self.play.save_rools(save_as)
-        value.setText(str(self.score.board[save_as]))
-        self.sum.setText(str(self.score.board["sum"]))
-        self.bonus.setText(str(self.score.board["bonus"]))
-        if self.score.count == 15:
-            self.play.finish()
-            self.total.setText(str(self.score.board["total"]))
-            self.roll.setEnabled(False)
+    def save_as(self, save_as, value, button, player):
+        """Saving player and resetting buttons"""
+        self.button_handler_save(button, player)
+        self.play.save_rools(save_as, player)
+        value.setText(str(player.score[save_as]))
+        self.sum[self.play.activ_player_counter].setText(str(player.score["sum"]))
+        self.bonus[self.play.activ_player_counter].setText(str(player.score["bonus"]))
+        if player.count == 15:
+            self.play.finish(player)
+            self.total[self.play.activ_player_counter].setText(str(player.score["total"]))
+            if self.play.activ_player_counter == self.play.numb_of_player - 1:
+                self.roll.setEnabled(False)
+                for x in range(self.play.numb_of_player):
+                    self.names[x].setStyleSheet("QLabel { background-color : #ffffff;}")
+                    return   
+        self.play.activ_player_counter += 1
+        self.player = self.play.active_player()
+        self.show_activ_player()
 
-    def button_handler_save(self, button):
-        # button.setEnabled(False)
-        self.score.used.append(button)
+    def button_handler_save(self, button, player):
+        """Button handler when save is clicked"""
+        player.used.append(button)
         for button in self.hold_button_list:
             if button.isChecked():
                 button.click()
@@ -97,11 +140,19 @@ class MainWindow(QMainWindow):
         for button in self.save_button_list:
             button.setEnabled(False)
         self.roll.setEnabled(True)
+        
     
-    def button_handler_roll(self):
+    def show_activ_player(self):
+        """Highlighting actic player in gui"""
+        for x in range(self.play.numb_of_player):
+            self.names[x].setStyleSheet("QLabel { background-color : #ffffff;}")
+        self.names[self.play.activ_player_counter].setStyleSheet("QLabel { background-color : #e6e6e6;}")
+
+    def button_handler_roll(self, player):
+        """Button handler after roll is clicked"""
         for button in self.save_button_list:
             button.setEnabled(True)
-        for button in self.score.used:
+        for button in player.used:
             button.setEnabled(False)
         for button in self.hold_button_list:
             button.setEnabled(True)
@@ -124,7 +175,7 @@ class MainWindow(QMainWindow):
                 if counter >= count:
                     timer.stop()
                     timer.deleteLater()
-                    self.set_dices()
+                    self.set_dices(self.player)
                     print(self.dices)
             timer.timeout.connect(self.update_faces)
             timer.timeout.connect(handler)
@@ -164,7 +215,7 @@ class MainWindow(QMainWindow):
         self.dice5.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
 
-    def set_dices(self):
+    def set_dices(self, player):
         """Set dices"""
         dices = self.play.roll(self.dices)
         self.dice1.setPixmap(QPixmap(self.dice_grafhics[dices[0]]))
@@ -172,7 +223,7 @@ class MainWindow(QMainWindow):
         self.dice3.setPixmap(QPixmap(self.dice_grafhics[dices[2]]))
         self.dice4.setPixmap(QPixmap(self.dice_grafhics[dices[3]]))
         self.dice5.setPixmap(QPixmap(self.dice_grafhics[dices[4]]))
-        self.button_handler_roll()
+        self.button_handler_roll(player)
 
     def hold_dice(self, dice):
         """Dices to hold"""

@@ -78,7 +78,7 @@ QPushButton {background-color: #ababab};
            <string>Save</string>
           </property>
          </widget>
-         <widget class="QLabel" name="two">
+         <widget class="QLabel" name="two_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -141,7 +141,7 @@ background-color: rgb(255, 255, 255);</string>
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="three">
+         <widget class="QLabel" name="three_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -175,7 +175,7 @@ background-color: rgb(255, 255, 255);</string>
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="one">
+         <widget class="QLabel" name="one_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -307,7 +307,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="five">
+         <widget class="QLabel" name="five_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -366,7 +366,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="four">
+         <widget class="QLabel" name="four_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -439,7 +439,7 @@ QPushButton {background-color: #ababab};
            <string>Save</string>
           </property>
          </widget>
-         <widget class="QLabel" name="six">
+         <widget class="QLabel" name="six_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -550,7 +550,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="sum">
+         <widget class="QLabel" name="sum_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -615,7 +615,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="name">
+         <widget class="QLabel" name="name_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -680,7 +680,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="bonus">
+         <widget class="QLabel" name="bonus_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -733,7 +733,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="pair">
+         <widget class="QLabel" name="pair_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -798,7 +798,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="twoPair">
+         <widget class="QLabel" name="twoPair_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -863,7 +863,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="threeOf">
+         <widget class="QLabel" name="threeOf_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -929,7 +929,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="fourOf">
+         <widget class="QLabel" name="fourOf_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -994,7 +994,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="full">
+         <widget class="QLabel" name="full_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -1059,7 +1059,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="small">
+         <widget class="QLabel" name="small_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -1124,7 +1124,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="big">
+         <widget class="QLabel" name="big_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -1189,7 +1189,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="chanse">
+         <widget class="QLabel" name="chanse_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -1254,7 +1254,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="yatzy">
+         <widget class="QLabel" name="yatzy_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -1319,7 +1319,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="total">
+         <widget class="QLabel" name="total_1">
           <property name="geometry">
            <rect>
             <x>80</x>
@@ -1415,7 +1415,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="name_4">
+         <widget class="QLabel" name="name_3">
           <property name="geometry">
            <rect>
             <x>180</x>
@@ -1449,7 +1449,7 @@ QPushButton {background-color: #ababab};
            <set>Qt::AlignCenter</set>
           </property>
          </widget>
-         <widget class="QLabel" name="name_5">
+         <widget class="QLabel" name="name_4">
           <property name="geometry">
            <rect>
             <x>230</x>
