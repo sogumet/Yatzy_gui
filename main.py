@@ -6,20 +6,16 @@ import random
 from PyQt6 import  uic
 from PyQt6.QtCore import QTimer, QProcess
 from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6.QtGui import QPixmap
+from PyQt6.QtGui import QPixmap, QKeyEvent
 from play import Play
 from name_dialog import NameDialog, NumberOfPlayerDialog
 
 class MainWindow(QMainWindow):
     """"Main class"""
 
-    dice_grafhics = ["dice_one60", "dice_two60","dice_three60",
-            "dice_four60","dice_five60","dice_six60"]
-    
-    
-
+    dice_grafhics = ["img/dice_one60", "img/dice_two60","img/dice_three60",
+            "img/dice_four60","img/dice_five60","img/dice_six60"]
     play = Play()
-    # player = play.player
     save_count = 0
     app = QApplication(sys.argv)
     player = ""
@@ -29,6 +25,8 @@ class MainWindow(QMainWindow):
         super().__init__(*args, **kwargs)
         basedir = os.path.dirname(__file__)
         uic.loadUi(os.path.join(basedir, "yatzy.ui"), self)
+        title = "Yatzy"
+        self.setWindowTitle(title)
         self.name_dialog = NameDialog()
         self.number_of_player_dialog = NumberOfPlayerDialog()
         self.hold_button_list = [self.button1, self.button2, self.button3, self.button4,
@@ -57,7 +55,6 @@ class MainWindow(QMainWindow):
             self.saveThreeOf, self.saveFourOf,self.saveFull, self.saveSmall, self.saveBig,
             self.saveChanse, self.saveYatzy]
         self.roll.pressed.connect(self.start_timer)
-        self.start.clicked.connect(self.restart)
         self.button1.clicked.connect(lambda : self.hold_button_clicked("1"))
         self.button2.clicked.connect(lambda : self.hold_button_clicked("2"))
         self.button3.clicked.connect(lambda : self.hold_button_clicked("3"))
@@ -78,14 +75,11 @@ class MainWindow(QMainWindow):
         self.saveBig.clicked.connect(lambda : self.save_as("large", self.big[self.play.activ_player_counter], self.saveBig, self.player))
         self.saveChanse.clicked.connect(lambda : self.save_as("chanse", self.chanse[self.play.activ_player_counter], self.saveChanse, self.player))
         self.saveYatzy.clicked.connect(lambda : self.save_as("yatzy", self.yatzy[self.play.activ_player_counter], self.saveYatzy, self.player))
-        self.name_dialog.dialogOk.clicked.connect(self.ok_clicked)
         self.dices = ""
         self.show()
         self.game_prepare()
         self.app.exec()
-        
-        
-    
+
     def game_prepare(self):
         """Game start"""
         self.number_of_player_dialog.exec()
@@ -99,11 +93,7 @@ class MainWindow(QMainWindow):
             self.player = self.play.player(self.name_dialog.nameEdit.text())
             self.names[x].setText(self.player.score["name"])
         self.player = self.play.active_player()     #start player
-        self.names[0].setStyleSheet("QLabel { background-color : #e6e6e6;}")
-
-    def ok_clicked(self):
-        """Dialog name ok clicked"""
-        
+        self.names[0].setStyleSheet("QLabel { background-color : #ababab;}")
 
     def restart(self):
         """Restart"""
@@ -123,9 +113,9 @@ class MainWindow(QMainWindow):
             self.total[self.play.activ_player_counter].setText(str(player.score["total"]))
             if self.play.activ_player_counter == self.play.numb_of_player - 1:
                 self.roll.setEnabled(False)
-                for x in range(self.play.numb_of_player):
-                    self.names[x].setStyleSheet("QLabel { background-color : #ffffff;}")
-                return   
+                for num in range(self.play.numb_of_player):
+                    self.names[num].setStyleSheet("QLabel { background-color : #ffffff;}")
+                return
         self.play.activ_player_counter += 1
         self.player = self.play.active_player()
         self.show_activ_player()
@@ -140,13 +130,31 @@ class MainWindow(QMainWindow):
         for button in self.save_button_list:
             button.setEnabled(False)
         self.roll.setEnabled(True)
-        
-    
+
+    def keyPressEvent(self,event: QKeyEvent):
+        """Key for hold button pressed handler"""
+        k = event.key()
+        if k == 49:
+            self.key_pressed(0)
+        if k == 50:
+            self.key_pressed(1)
+        if k == 51:
+            self.key_pressed(2)
+        if k == 52:
+            self.key_pressed(3)
+        if k == 53:
+            self.key_pressed(4)
+
+    def key_pressed(self, key):
+        """Function controller for key event"""
+        self.hold_button_list[key].click()
+
     def show_activ_player(self):
         """Highlighting actic player in gui"""
-        for x in range(self.play.numb_of_player):
-            self.names[x].setStyleSheet("QLabel { background-color : #ffffff;}")
-        self.names[self.play.activ_player_counter].setStyleSheet("QLabel { background-color : #e6e6e6;}")
+        for num in range(self.play.numb_of_player):
+            self.names[num].setStyleSheet("QLabel { background-color : #ffffff;}")
+        self.names[self.play.activ_player_counter].setStyleSheet("QLabel\
+            { background-color : #ababab;}")
 
     def button_handler_roll(self, player):
         """Button handler after roll is clicked"""
@@ -214,7 +222,6 @@ class MainWindow(QMainWindow):
         """Show dice 5"""
         self.dice5.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
 
-
     def set_dices(self, player):
         """Set dices"""
         dices = self.play.roll(self.dices)
@@ -236,6 +243,7 @@ class MainWindow(QMainWindow):
     def hold_button_clicked(self, button):
         """Button handler"""
         if button == "1":
+            print("Testing key event")
             self.dice_control(self.button1.isChecked(), button, self.button1)
         if button == "2":
             self.dice_control(self.button2.isChecked(), button, self.button2)
@@ -245,7 +253,6 @@ class MainWindow(QMainWindow):
             self.dice_control(self.button4.isChecked(), button, self.button4)
         if button == "5":
             self.dice_control(self.button5.isChecked(), button, self.button5)
-
 
     def dice_control(self, checked, dice_number, button):
         """Dice controller"""
