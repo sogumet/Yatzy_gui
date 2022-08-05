@@ -4,9 +4,9 @@ import sys
 import random
 
 from PyQt6 import  uic
-from PyQt6.QtCore import QTimer, QProcess
+from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow
-from PyQt6.QtGui import QPixmap, QKeyEvent
+from PyQt6.QtGui import QPixmap, QKeyEvent, QAction, QIcon
 from play import Play
 from name_dialog import NameDialog, NumberOfPlayerDialog
 
@@ -27,6 +27,7 @@ class MainWindow(QMainWindow):
         uic.loadUi(os.path.join(basedir, "yatzy.ui"), self)
         title = "Yatzy"
         self.setWindowTitle(title)
+        self.setWindowIcon(QIcon('img/yatzy.png'))
         self.name_dialog = NameDialog()
         self.number_of_player_dialog = NumberOfPlayerDialog()
         self.hold_button_list = [self.button1, self.button2, self.button3, self.button4,
@@ -55,6 +56,8 @@ class MainWindow(QMainWindow):
             self.saveThreeOf, self.saveFourOf,self.saveFull, self.saveSmall, self.saveBig,
             self.saveChanse, self.saveYatzy]
         self.roll.pressed.connect(self.start_timer)
+        self.roll.hide()
+        self.start.clicked.connect(self.game_prepare)
         self.button1.clicked.connect(lambda : self.hold_button_clicked("1"))
         self.button2.clicked.connect(lambda : self.hold_button_clicked("2"))
         self.button3.clicked.connect(lambda : self.hold_button_clicked("3"))
@@ -76,12 +79,29 @@ class MainWindow(QMainWindow):
         self.saveChanse.clicked.connect(lambda : self.save_as("chanse", self.chanse[self.play.activ_player_counter], self.saveChanse, self.player))
         self.saveYatzy.clicked.connect(lambda : self.save_as("yatzy", self.yatzy[self.play.activ_player_counter], self.saveYatzy, self.player))
         self.dices = ""
+
+        button_action = QAction(
+            "&Restart",
+            self,
+        )
+        button_action2 = QAction(
+            "&Quit",
+            self,
+        )
+
+        button_action.triggered.connect(self.restart)
+        button_action2.triggered.connect(self.quit)
+        menu = self.menuBar()
+        file_menu = menu.addMenu("&Game")
+        file_menu.addAction(button_action)
+        file_menu.addAction(button_action2)
+
         self.show()
-        self.game_prepare()
         self.app.exec()
 
     def game_prepare(self):
         """Game start"""
+        self.roll.hide()
         self.number_of_player_dialog.exec()
         self.play.numb_of_player = self.number_of_player_dialog.numberOfPlayer.value()
         print("Number of player: ", self.play.numb_of_player)
@@ -94,12 +114,17 @@ class MainWindow(QMainWindow):
             self.names[x].setText(self.player.score["name"])
         self.player = self.play.active_player()     #start player
         self.names[0].setStyleSheet("QLabel { background-color : #ababab;}")
+        self.start.hide()
+        self.roll.show()
+
+    def quit(self):
+        """Quit game"""
+        self.close()
 
     def restart(self):
-        """Restart"""
-        self.app.quit()
-        status = QProcess.startDetached(sys.executable, sys.argv)
-        print(status)
+        """Restart game"""
+        self.close()
+        MainWindow()
 
     def save_as(self, save_as, value, button, player):
         """Saving player and resetting buttons"""

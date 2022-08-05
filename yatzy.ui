@@ -3302,6 +3302,63 @@ QPushButton {background-color: #ababab};
           <item>
            <widget class="QWidget" name="widget" native="true">
             <layout class="QGridLayout" name="gridLayout_2">
+             <item row="0" column="3">
+              <widget class="QLabel" name="dice4">
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>60</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>img/yatsy2.png</pixmap>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="2">
+              <widget class="QLabel" name="dice3">
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>60</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>img/yatsy1.png</pixmap>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
+             <item row="0" column="1">
+              <widget class="QLabel" name="dice2">
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>60</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>img/yatsy2.png</pixmap>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
              <item row="2" column="4">
               <widget class="QPushButton" name="button5">
                <property name="enabled">
@@ -3329,6 +3386,25 @@ QPushButton {background-color: #ababab};
                </property>
               </widget>
              </item>
+             <item row="0" column="0">
+              <widget class="QLabel" name="dice1">
+               <property name="maximumSize">
+                <size>
+                 <width>60</width>
+                 <height>60</height>
+                </size>
+               </property>
+               <property name="text">
+                <string/>
+               </property>
+               <property name="pixmap">
+                <pixmap>img/yatsy1.png</pixmap>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignCenter</set>
+               </property>
+              </widget>
+             </item>
              <item row="2" column="3">
               <widget class="QPushButton" name="button4">
                <property name="enabled">
@@ -3350,25 +3426,6 @@ QPushButton {background-color: #ababab};
                </property>
                <property name="checkable">
                 <bool>true</bool>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="0">
-              <widget class="QLabel" name="dice1">
-               <property name="maximumSize">
-                <size>
-                 <width>60</width>
-                 <height>60</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="pixmap">
-                <pixmap>img/yatsy1.png</pixmap>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
                </property>
               </widget>
              </item>
@@ -3421,29 +3478,6 @@ QPushButton {background-color: #ababab};
                </property>
               </widget>
              </item>
-             <item row="2" column="2">
-              <widget class="QPushButton" name="button3">
-               <property name="enabled">
-                <bool>false</bool>
-               </property>
-               <property name="maximumSize">
-                <size>
-                 <width>80</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton::checked{background-color #e6e6e6;}
-QPushButton {background-color: #ababab};</string>
-               </property>
-               <property name="text">
-                <string>Hold</string>
-               </property>
-               <property name="checkable">
-                <bool>true</bool>
-               </property>
-              </widget>
-             </item>
              <item row="2" column="1">
               <widget class="QPushButton" name="button2">
                <property name="enabled">
@@ -3468,60 +3502,26 @@ QPushButton {background-color: #ababab};
                </property>
               </widget>
              </item>
-             <item row="0" column="2">
-              <widget class="QLabel" name="dice3">
+             <item row="2" column="2">
+              <widget class="QPushButton" name="button3">
+               <property name="enabled">
+                <bool>false</bool>
+               </property>
                <property name="maximumSize">
                 <size>
-                 <width>60</width>
-                 <height>60</height>
+                 <width>80</width>
+                 <height>16777215</height>
                 </size>
                </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="pixmap">
-                <pixmap>img/yatsy1.png</pixmap>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="1">
-              <widget class="QLabel" name="dice2">
-               <property name="maximumSize">
-                <size>
-                 <width>60</width>
-                 <height>60</height>
-                </size>
+               <property name="styleSheet">
+                <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};</string>
                </property>
                <property name="text">
-                <string/>
+                <string>Hold</string>
                </property>
-               <property name="pixmap">
-                <pixmap>img/yatsy2.png</pixmap>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
-               </property>
-              </widget>
-             </item>
-             <item row="0" column="3">
-              <widget class="QLabel" name="dice4">
-               <property name="maximumSize">
-                <size>
-                 <width>60</width>
-                 <height>60</height>
-                </size>
-               </property>
-               <property name="text">
-                <string/>
-               </property>
-               <property name="pixmap">
-                <pixmap>img/yatsy2.png</pixmap>
-               </property>
-               <property name="alignment">
-                <set>Qt::AlignCenter</set>
+               <property name="checkable">
+                <bool>true</bool>
                </property>
               </widget>
              </item>
@@ -3530,32 +3530,74 @@ QPushButton {background-color: #ababab};
           </item>
           <item>
            <widget class="QWidget" name="widget_2" native="true">
-            <layout class="QHBoxLayout" name="horizontalLayout_2">
-             <item>
-              <widget class="QPushButton" name="roll">
-               <property name="maximumSize">
-                <size>
-                 <width>120</width>
-                 <height>16777215</height>
-                </size>
-               </property>
-               <property name="styleSheet">
-                <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+            <property name="layoutDirection">
+             <enum>Qt::LeftToRight</enum>
+            </property>
+            <widget class="QPushButton" name="start">
+             <property name="geometry">
+              <rect>
+               <x>145</x>
+               <y>110</y>
+               <width>240</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>240</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>240</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton::checked{background-color #e6e6e6;}
+QPushButton {background-color: #ababab};</string>
+             </property>
+             <property name="text">
+              <string>Start</string>
+             </property>
+            </widget>
+            <widget class="QPushButton" name="roll">
+             <property name="geometry">
+              <rect>
+               <x>145</x>
+               <y>110</y>
+               <width>240</width>
+               <height>23</height>
+              </rect>
+             </property>
+             <property name="minimumSize">
+              <size>
+               <width>240</width>
+               <height>0</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>240</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton::checked{background-color #e6e6e6;}
 QPushButton {background-color: #ababab};
 </string>
-               </property>
-               <property name="text">
-                <string>Roll</string>
-               </property>
-               <property name="autoDefault">
-                <bool>false</bool>
-               </property>
-               <property name="default">
-                <bool>false</bool>
-               </property>
-              </widget>
-             </item>
-            </layout>
+             </property>
+             <property name="text">
+              <string>Roll</string>
+             </property>
+             <property name="autoDefault">
+              <bool>false</bool>
+             </property>
+             <property name="default">
+              <bool>false</bool>
+             </property>
+            </widget>
            </widget>
           </item>
          </layout>
@@ -3572,7 +3614,7 @@ QPushButton {background-color: #ababab};
      <x>0</x>
      <y>0</y>
      <width>995</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>
