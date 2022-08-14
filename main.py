@@ -8,7 +8,7 @@ from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtGui import QPixmap, QKeyEvent, QAction, QIcon
 from play import Play
-from name_dialog import NameDialog, NumberOfPlayerDialog
+from dialogs import NameDialog, NumberOfPlayerDialog, HelpDialog, AboutDialog
 
 class MainWindow(QMainWindow):
     """"Main class"""
@@ -30,6 +30,8 @@ class MainWindow(QMainWindow):
         self.setWindowIcon(QIcon('img/yatzy.png'))
         self.name_dialog = NameDialog()
         self.number_of_player_dialog = NumberOfPlayerDialog()
+        self.help_dialog = HelpDialog()
+        self.about_dialog = AboutDialog()
         self.hold_button_list = [self.button1, self.button2, self.button3, self.button4,
             self.button5]
         self.names = {0: self.name_1, 1: self.name_2, 2: self.name_3, 3: self.name_4}
@@ -84,17 +86,32 @@ class MainWindow(QMainWindow):
             "&Restart",
             self,
         )
+
         button_action2 = QAction(
             "&Quit",
             self,
         )
 
+        button_action3 = QAction(
+            "&Help",
+            self,
+        )
+
+        button_action4 = QAction(
+            "&About",
+            self,
+        )
+
         button_action.triggered.connect(self.restart)
         button_action2.triggered.connect(self.quit)
+        button_action3.triggered.connect(self.help)
+        button_action4.triggered.connect(self.about)
         menu = self.menuBar()
         file_menu = menu.addMenu("&Game")
         file_menu.addAction(button_action)
         file_menu.addAction(button_action2)
+        file_menu.addAction(button_action3)
+        file_menu.addAction(button_action4)
 
         self.show()
         self.app.exec()
@@ -125,6 +142,14 @@ class MainWindow(QMainWindow):
         """Restart game"""
         self.close()
         MainWindow()
+    
+    def help(self):
+        """Start help dialog"""
+        self.help_dialog.help()
+
+    def about(self):
+        """Start about dialog"""
+        self.about_dialog.help()
 
     def save_as(self, save_as, value, button, player):
         """Saving player and resetting buttons"""
