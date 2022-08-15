@@ -44,7 +44,6 @@ class SaveScore:
 
     def save_numbers(self, choice):
         """Saving 1 to 6 """
-        print("Player: ", self.player)
         val = 0
         for i in self.hand.hand:
             if i.value == int(choice):
@@ -184,11 +183,9 @@ class SaveScore:
 
     def save(self, choice, val):
         """General save"""
-        print(f"Saving as {choice}")
         self.player.score[choice] = val
         self.player.score["hidden"] += val
 
     def stroke(self, choice, val):
         """General stroke"""
-        print(f"Deleting {val}")
         self.player.score[choice] = "-"

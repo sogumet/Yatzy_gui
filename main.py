@@ -25,8 +25,7 @@ class MainWindow(QMainWindow):
         super().__init__(*args, **kwargs)
         basedir = os.path.dirname(__file__)
         uic.loadUi(os.path.join(basedir, "yatzy.ui"), self)
-        title = "Yatzy"
-        self.setWindowTitle(title)
+        self.setWindowTitle("Yatzy")
         self.setWindowIcon(QIcon('img/yatzy.png'))
         self.name_dialog = NameDialog()
         self.number_of_player_dialog = NumberOfPlayerDialog()
@@ -121,7 +120,6 @@ class MainWindow(QMainWindow):
         self.roll.hide()
         self.number_of_player_dialog.exec()
         self.play.numb_of_player = self.number_of_player_dialog.numberOfPlayer.value()
-        print("Number of player: ", self.play.numb_of_player)
         for x in range(self.play.numb_of_player):
             number = str(x+1)
             self.name_dialog.label.setText(f"Enter name of player {number}:")
@@ -234,10 +232,8 @@ class MainWindow(QMainWindow):
                     timer.stop()
                     timer.deleteLater()
                     self.set_dices(self.player)
-                    print(self.dices)
             timer.timeout.connect(self.update_faces)
             timer.timeout.connect(handler)
-        else: print("Save")
 
     def update_faces(self):
         """Update label"""
@@ -293,7 +289,6 @@ class MainWindow(QMainWindow):
     def hold_button_clicked(self, button):
         """Button handler"""
         if button == "1":
-            print("Testing key event")
             self.dice_control(self.button1.isChecked(), button, self.button1)
         if button == "2":
             self.dice_control(self.button2.isChecked(), button, self.button2)

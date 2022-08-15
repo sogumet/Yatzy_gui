@@ -37,14 +37,12 @@ class Play:
         for val in all_dice:
             self.hand.hand[val].roll()
         for val in self.hand.hand:
-            print(val.value, end=" ")
             dices.append(val.value - 1)
         self.counter += 1
         return dices
 
     def save_rools(self, choice, player):
         """Save method"""
-        print("saving one")
         self.save(player, self.hand, choice) # init savescore
         self.counter = 0
         self.game_counter += 1

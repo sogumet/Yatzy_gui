@@ -9,6 +9,7 @@ class NameDialog(QDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         uic.loadUi(("nameDialog.ui"), self)
+        self.setWindowTitle("Names")
 
 class NumberOfPlayerDialog(QDialog):
     """Class Number of player dialog"""
@@ -16,9 +17,13 @@ class NumberOfPlayerDialog(QDialog):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         uic.loadUi(("numberOfPlayerDialog.ui"), self)
+        self.setWindowTitle("Players")
 
 class HelpDialog(QDialog):
     """Class Help dialog"""
+    def __init__(self):
+        super().__init__()
+        self.setWindowTitle("Help")
 
     def help(self):
         """Help message"""
