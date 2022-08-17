@@ -1,16 +1,17 @@
 """module main with class MainWindow"""
-import os
+# import os
 import sys
 import random
 
-from PyQt6 import  uic
+# from PyQt6 import  uic
 from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtGui import QPixmap, QKeyEvent, QAction, QIcon
 from play import Play
+from yatzyui import Ui_MainWindow
 from dialogs import NameDialog, NumberOfPlayerDialog, HelpDialog, AboutDialog
 
-class MainWindow(QMainWindow):
+class MainWindow(QMainWindow, Ui_MainWindow):
     """"Main class"""
 
     dice_grafhics = ["img/dice_one60", "img/dice_two60","img/dice_three60",
@@ -21,10 +22,8 @@ class MainWindow(QMainWindow):
     player = ""
 
     def __init__(self, *args, **kwargs):
-
-        super().__init__(*args, **kwargs)
-        basedir = os.path.dirname(__file__)
-        uic.loadUi(os.path.join(basedir, "yatzy.ui"), self)
+        super(MainWindow, self).__init__(*args, **kwargs)
+        self.setupUi(self)
         self.setWindowTitle("Yatzy")
         self.setWindowIcon(QIcon('img/yatzy.png'))
         self.name_dialog = NameDialog()

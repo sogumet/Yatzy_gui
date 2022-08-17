@@ -1,22 +1,25 @@
 """Module name_dialog with class NameDialog"""
-from PyQt6 import  uic
 from PyQt6.QtWidgets import QDialog, QMessageBox
-from PyQt6.QtGui import QFont 
+from nameDialogUi import Ui_Dialog
+from numberOfPlayerDialogUi import Ui_DialogNumbers
 
-class NameDialog(QDialog):
+class NameDialog(QDialog, Ui_Dialog):
     """Class NameDialog"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        uic.loadUi(("nameDialog.ui"), self)
+        self.setupUi(self)
+
+        # uic.loadUi(("nameDialog.ui"), self)
         self.setWindowTitle("Names")
 
-class NumberOfPlayerDialog(QDialog):
+class NumberOfPlayerDialog(QDialog, Ui_DialogNumbers):
     """Class Number of player dialog"""
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
-        uic.loadUi(("numberOfPlayerDialog.ui"), self)
+        # uic.loadUi(("numberOfPlayerDialog.ui"), self)
+        self.setupUi(self)
         self.setWindowTitle("Players")
 
 class HelpDialog(QDialog):
