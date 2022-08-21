@@ -2,8 +2,10 @@
 # import os
 import sys
 import random
+import os
 
 # from PyQt6 import  uic
+from ctypes import windll
 from PyQt6.QtCore import QTimer
 from PyQt6.QtWidgets import QApplication, QMainWindow
 from PyQt6.QtGui import QPixmap, QKeyEvent, QAction, QIcon
@@ -11,27 +13,36 @@ from play import Play
 from yatzyui import Ui_MainWindow
 from dialogs import NameDialog, NumberOfPlayerDialog, HelpDialog, AboutDialog
 
+
 class MainWindow(QMainWindow, Ui_MainWindow):
     """"Main class"""
-
+    basedir = os.path.dirname(__file__)
     dice_grafhics = ["img/dice_one60", "img/dice_two60","img/dice_three60",
             "img/dice_four60","img/dice_five60","img/dice_six60"]
     play = Play()
     save_count = 0
     app = QApplication(sys.argv)
     player = ""
+    
+    myappid = "mycompany.myproduct.subproduct.version"  # <2>
+    windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
 
     def __init__(self, *args, **kwargs):
         super(MainWindow, self).__init__(*args, **kwargs)
         self.setupUi(self)
         self.setWindowTitle("Yatzy")
-        self.setWindowIcon(QIcon('img/yatzy.png'))
+        self.setWindowIcon(QIcon(os.path.join(self.basedir, 'img/yatzyicon.png')))
         self.name_dialog = NameDialog()
         self.number_of_player_dialog = NumberOfPlayerDialog()
         self.help_dialog = HelpDialog()
         self.about_dialog = AboutDialog()
         self.hold_button_list = [self.button1, self.button2, self.button3, self.button4,
             self.button5]
+        self.dice1.setPixmap(QPixmap(os.path.join(self.basedir, 'img/yatsy1')))
+        self.dice2.setPixmap(QPixmap(os.path.join(self.basedir, 'img/yatsy1')))
+        self.dice3.setPixmap(QPixmap(os.path.join(self.basedir, 'img/yatsy1')))
+        self.dice4.setPixmap(QPixmap(os.path.join(self.basedir, 'img/yatsy1')))
+        self.dice5.setPixmap(QPixmap(os.path.join(self.basedir, 'img/yatsy1')))
         self.names = {0: self.name_1, 1: self.name_2, 2: self.name_3, 3: self.name_4}
         self.one = {0: self.one_1, 1: self.one_2, 2: self.one_3, 3: self.one_4}
         self.two = {0: self.two_1, 1: self.two_2, 2: self.two_3, 3: self.two_4}
@@ -249,32 +260,31 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def faces1(self):
         """Show dice 1"""
-        self.dice1.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
+        self.dice1.setPixmap(QPixmap(os.path.join(self.basedir, random.choice(self.dice_grafhics))))
 
     def faces2(self):
         """Show dice 2"""
-        self.dice2.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
+        self.dice2.setPixmap(QPixmap(os.path.join(self.basedir, random.choice(self.dice_grafhics))))
 
     def faces3(self):
         """Show dice 3"""
-        self.dice3.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
-
+        self.dice3.setPixmap(QPixmap(os.path.join(self.basedir, random.choice(self.dice_grafhics))))
     def faces4(self):
         """Show dice 4"""
-        self.dice4.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
+        self.dice4.setPixmap(QPixmap(os.path.join(self.basedir, random.choice(self.dice_grafhics))))
 
     def faces5(self):
         """Show dice 5"""
-        self.dice5.setPixmap(QPixmap(random.choice(self.dice_grafhics)))
+        self.dice5.setPixmap(QPixmap(os.path.join(self.basedir, random.choice(self.dice_grafhics))))
 
     def set_dices(self, player):
         """Set dices"""
         dices = self.play.roll(self.dices)
-        self.dice1.setPixmap(QPixmap(self.dice_grafhics[dices[0]]))
-        self.dice2.setPixmap(QPixmap(self.dice_grafhics[dices[1]]))
-        self.dice3.setPixmap(QPixmap(self.dice_grafhics[dices[2]]))
-        self.dice4.setPixmap(QPixmap(self.dice_grafhics[dices[3]]))
-        self.dice5.setPixmap(QPixmap(self.dice_grafhics[dices[4]]))
+        self.dice1.setPixmap(QPixmap(os.path.join(self.basedir, self.dice_grafhics[dices[0]])))
+        self.dice2.setPixmap(QPixmap(os.path.join(self.basedir, self.dice_grafhics[dices[1]])))
+        self.dice3.setPixmap(QPixmap(os.path.join(self.basedir, self.dice_grafhics[dices[2]])))
+        self.dice4.setPixmap(QPixmap(os.path.join(self.basedir, self.dice_grafhics[dices[3]])))
+        self.dice5.setPixmap(QPixmap(os.path.join(self.basedir, self.dice_grafhics[dices[4]])))
         self.button_handler_roll(player)
 
     def hold_dice(self, dice):

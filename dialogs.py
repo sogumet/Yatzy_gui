@@ -1,7 +1,12 @@
 """Module name_dialog with class NameDialog"""
+import os
+
 from PyQt6.QtWidgets import QDialog, QMessageBox
+from PyQt6.QtGui import QIcon
 from nameDialogUi import Ui_Dialog
 from numberOfPlayerDialogUi import Ui_DialogNumbers
+
+basedir = os.path.dirname(__file__)
 
 class NameDialog(QDialog, Ui_Dialog):
     """Class NameDialog"""
@@ -12,6 +17,7 @@ class NameDialog(QDialog, Ui_Dialog):
 
         # uic.loadUi(("nameDialog.ui"), self)
         self.setWindowTitle("Names")
+        self.setWindowIcon(QIcon(os.path.join(basedir, 'img/yatzyicon.png')))
 
 class NumberOfPlayerDialog(QDialog, Ui_DialogNumbers):
     """Class Number of player dialog"""
@@ -21,12 +27,14 @@ class NumberOfPlayerDialog(QDialog, Ui_DialogNumbers):
         # uic.loadUi(("numberOfPlayerDialog.ui"), self)
         self.setupUi(self)
         self.setWindowTitle("Players")
+        self.setWindowIcon(QIcon(os.path.join(basedir, 'img/yatzyicon.png')))
 
 class HelpDialog(QDialog):
     """Class Help dialog"""
     def __init__(self):
         super().__init__()
         self.setWindowTitle("Help")
+        self.setWindowIcon(QIcon(os.path.join(basedir, 'img/yatzyicon.png')))
 
     def help(self):
         """Help message"""
@@ -43,19 +51,21 @@ class HelpDialog(QDialog):
             "   if the score is not valid you will get a stroke.\n"
             "7. The game will automaticly calculate the bonus and total score.",
             buttons=QMessageBox.StandardButton.Close
-            
         )
+
 class AboutDialog(QDialog):
     """Class About dialog"""
 
     def help(self):
         """About message"""
         mess = QMessageBox
+        self.setWindowIcon(QIcon(os.path.join(basedir, 'img/yatzyicon.png')))
+
         mess.information(
             self,
             "About",
             "Yatzy version 1.0.0 2022\n"
             "Created by Kent Sjöberg",
             buttons=QMessageBox.StandardButton.Close
-            
+
         )
